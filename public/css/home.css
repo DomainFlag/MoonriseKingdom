@@ -1,0 +1,74 @@
+* {
+    margin : 0;
+    padding : 0;
+}
+
+html, body {
+    height : 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /*background: radial-gradient(circle at center, transparent, #0EC6BB);*/
+}
+
+.team_header {
+    color: forestgreen;
+    margin: 10px 0;
+    font-size: 36px;
+    font-family: "Roboto Slab", Serif;
+    font-weight: 300;
+}
+
+.teams {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input {
+    margin: 5px 0;
+    padding-left: 5px;
+    display: inline-flex;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 45px;
+    width: 260px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+    outline: 0;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.input:-webkit-autofill {
+    color: #2a2a2a !important;
+}
+
+.submit {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, 0);
+    margin: 5px 0;
+    display: inline-flex;
+    border: none;
+    border-radius: 3px;
+    background-color: crimson;
+    padding: 10px 16px;
+    font-size: 16px;
+    color: white;
+    font-family: "Roboto Slab", SaSerif;
+}
