@@ -17,6 +17,7 @@
             <div class="class" class-specific="mage"></div>
         </div>
     </div>
+    <div class="rewind"></div>
 </section>
 <?php include "partials/footer.php"; ?>
 <script src="../public/scripts/gameboard.js"></script>

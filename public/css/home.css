@@ -16,7 +16,6 @@ section {
     display: flex;
     flex-direction: row;
     flex: 1;
-    /*background: radial-gradient(circle at center, transparent, #0EC6BB);*/
 }
 
 .team_header {
