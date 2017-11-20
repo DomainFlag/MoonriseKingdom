@@ -1,6 +1,6 @@
 <?php
 	define('server', 'localhost');
-	define('user', 'p1'); 
+	define('user', 'root');
 	define('mdp', '');
-	define('bd', 'p1');
+	define('bd', 'project');
 ?>

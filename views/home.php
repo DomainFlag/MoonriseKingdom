@@ -19,6 +19,23 @@
     </div>
     <input class="submit" type="button" value="Lets Start">
 </section>
+<div>
+    <?php
+    include('../php/fetchTeams.php');
+    $data = getTeams();
+    foreach ($data as $team) {
+        ?>
+        <div>
+            <?php
+            foreach ($team as $morpion) {
+                echo $morpion["class"];
+            }
+            ?>
+        </div>
+        <?php
+    }
+    ?>
+</div>
 <?php include "partials/footer.php"; ?>
 <script src="../public/scripts/home.js"></script>
 </body>

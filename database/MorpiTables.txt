@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS ActionTypes;
 DROP TABLE IF EXISTS Coordinates;
 DROP TABLE IF EXISTS AllTeams;
 DROP TABLE IF EXISTS AllMorpis;
-
+DROP TABLE IF EXISTS Appartient;
 
 
 #------------------------------------------------------------
@@ -156,12 +156,41 @@ CREATE TABLE AllMorpis(
         PRIMARY KEY (idM )
 )ENGINE=InnoDB;
 
+#------------------------------------------------------------
+# Table: Appartient
+#------------------------------------------------------------
+
+CREATE TABLE Appartient(
+        idT Int NOT NULL REFERENCES AllTeams(idT),
+        idM Int NOT NULL REFERENCES AllMorpis(idM),
+        PRIMARY KEY (idT ,idM )
+)ENGINE=InnoDB;
+
+
 INSERT INTO ActionTypes VALUES("attack");
 INSERT INTO ActionTypes VALUES("throw");
 INSERT INTO ActionTypes VALUES("fireball");
 INSERT INTO ActionTypes VALUES("heal");
 
-INSERT INTO AllMorpis(health,damage,mana,bonus,class) VALUES(8,2,0,10,"warrior");
+INSERT INTO AllTeams(name,color) VALUES('CovrigaTeam','#ff0fff');
+INSERT INTO AllTeams(name,color) VALUES('MariaTeam','#f00fff');
+
+INSERT INTO Appartient(idT,idM) VALUES(1, 1);
+INSERT INTO Appartient(idT,idM) VALUES(1, 2);
+INSERT INTO Appartient(idT,idM) VALUES(1, 5);
+INSERT INTO Appartient(idT,idM) VALUES(1, 6);
+INSERT INTO Appartient(idT,idM) VALUES(1, 7);
+INSERT INTO Appartient(idT,idM) VALUES(1, 10);
+INSERT INTO Appartient(idT,idM) VALUES(1, 11);
+
+INSERT INTO Appartient(idT,idM) VALUES(2, 3);
+INSERT INTO Appartient(idT,idM) VALUES(2, 4);
+INSERT INTO Appartient(idT,idM) VALUES(2, 8);
+INSERT INTO Appartient(idT,idM) VALUES(2, 9);
+INSERT INTO Appartient(idT,idM) VALUES(2, 12);
+INSERT INTO Appartient(idT,idM) VALUES(2, 13);
+INSERT INTO Appartient(idT,idM) VALUES(2, 14);
+
 INSERT INTO AllMorpis(health,damage,mana,bonus,class) VALUES(7,2,0,10,"warrior");
 INSERT INTO AllMorpis(health,damage,mana,bonus,class) VALUES(6,4,0,10,"warrior");
 INSERT INTO AllMorpis(health,damage,mana,bonus,class) VALUES(5,5,0,10,"warrior");
