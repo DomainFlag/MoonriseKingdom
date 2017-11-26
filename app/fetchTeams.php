@@ -7,18 +7,14 @@
  */
 include('../inc/constants.php');
 include('../inc/connexion.php');
-connectBD();
-$connexion;
-function getTeams() {
-    global $connexion;
-    $req = 'SELECT * FROM AllTeams NATURAL JOIN Appartient NATURAL JOIN AllMorpis;';
-    echo (string)$connexion;
+function getTeams($connexion) {
+    $req = "SELECT * FROM Compositions NATURAL JOIN Belongs NATURAL JOIN Sample;";
     $res = mysqli_query($connexion, $req);
     $allTeams = array();
     while ($row = mysqli_fetch_array($res)) {
-        array_push($allTeams[$row["idT"]-1], $row);
+        $index = $row["idT"]-1;
+        if(!isset($allTeams[$index][$row["class"]])) $allTeams[$index][$row["class"]] = array();
+        $allTeams[$index][$row["class"]][] = $row;
     }
     return $allTeams;
 }
-
-deconnectBD();

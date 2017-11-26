@@ -5,24 +5,45 @@
  * Date: 11/11/2017
  * Time: 22:55
  */
-
-$connection = new mysqli("localhost", "root", "Cc12a23s","ancient_empire");
-
-if($connection->connect_error) {
-    echo "Fuck";
-}
+include('../inc/constants.php');
+include('../inc/connexion.php');
+$connection = connectDB();
+session_start();
+$_SESSION["turns"] = 0;
 
 $data = json_decode(file_get_contents('php://input'));
-$identifier = md5(microtime().rand());
 $date = date('Y-m-d');
-if(isset($data->team_1) && isset($data->team_2)) {
-    if($connection->query("INSERT INTO game(identifier, idTVictory, dimension, created_at) VALUES('".$identifier."', NULL, 4, '".$date."')") === TRUE) {
+
+if(isset($data)) {
+    $req = "INSERT INTO game(identifier, dimension, created_at) VALUES('". session_id()."', ". $data->dimension . ", '".$date."')";
+    $res = mysqli_query($connection, $req);
+    if($res) {
         $last_id = $connection->insert_id;
-        $connection->query("INSERT INTO team(idG, name, color, created_at) VALUES('". $last_id ."', '".$data->team_1."', 'red', '". $date ."')");
-        $connection->query("INSERT INTO team(idG, name, color, created_at) VALUES('". $last_id ."', '".$data->team_2."', 'blue', '". $date ."')");
-        echo $identifier;
-    };
+
+        $req_team_1 = "INSERT INTO team(idG, name, color) VALUES(". $last_id .", '".$data->teams[0]->name."', '".$data->teams[0]->color."')";
+        mysqli_query($connection, $req_team_1);
+        $team_last_id = $connection->insert_id;
+
+        $getMorpionsTeam_1 = "SELECT * FROM (SELECT * FROM compositions WHERE idT = " . $data->teams[0]->composition . ") T NATURAL JOIN belongs NATURAL JOIN sample;";
+        $MorpionsTeam_1 = mysqli_query($connection, $getMorpionsTeam_1);
+        while($row = mysqli_fetch_array($MorpionsTeam_1)) {
+            $insertMorpionTeam_1 = "INSERT INTO morpion(health, damage, mana, bonus, class, idT) VALUES(". $row["health"] . ", ". $row["damage"] . ", ". $row["mana"] . ", ". $row["bonus"] . ", '". $row["class"] . "', ". $team_last_id . ");";
+            mysqli_query($connection, $insertMorpionTeam_1);
+        }
+
+
+        $req_team_2 = "INSERT INTO team(idG, name, color) VALUES(". $last_id .", '".$data->teams[1]->name."', '".$data->teams[1]->color."')";
+        mysqli_query($connection, $req_team_2);
+        $team_last_id = $connection->insert_id;
+
+        $getMorpionsTeam_2 = "SELECT * FROM (SELECT * FROM compositions WHERE idT = " . $data->teams[1]->composition . ") T NATURAL JOIN belongs NATURAL JOIN sample;";
+        $MorpionsTeam_2 = mysqli_query($connection, $getMorpionsTeam_2);
+        while($row = mysqli_fetch_array($MorpionsTeam_2)) {
+            $insertMorpionTeam_2 = "INSERT INTO morpion(health, damage, mana, bonus, class, idT) VALUES(". $row["health"] . ", ". $row["damage"] . ", ". $row["mana"] . ", ". $row["bonus"] . ", '". $row["class"] . "', ". $team_last_id . ");";
+            mysqli_query($connection, $insertMorpionTeam_2);
+        }
+    }
 }
 
-echo $connection->error;
-$connection->close();
+disconnectDB($connection);
+session_write_close();

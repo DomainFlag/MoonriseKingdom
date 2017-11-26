@@ -52,35 +52,69 @@ canvas {
 
 .class {
     position: relative;
-    height: 26px;
-    width: 26px;
+    height: 42px;
+    width: 42px;
     margin: 3px 0;
-    border-radius: 13px;
+    border-radius: 21px;
 }
 
 [class-specific = "warrior"] {
-    background: radial-gradient(circle at center, darkred, transparent);
+    background: url("../assets/warrior.png") no-repeat center;
+    background-size: 70%;
 }
 
 [class-specific = "warrior"]:hover {
-    background: darkred;
+    background-color: darkred;
 }
 
 [class-specific = "archer"] {
     left: 20px;
-    background: radial-gradient(circle at center, forestgreen, transparent);
+    background: url("../assets/archer.png") no-repeat center;
+    background-size: 80%;
 }
 
 [class-specific = "archer"]:hover {
-    background: forestgreen;
+    background-color: forestgreen;
 }
 
 [class-specific = "mage"] {
-    background: radial-gradient(circle at center, mediumslateblue, transparent);
+    background: url("../assets/mage.png") no-repeat center;
+    background-size: 80%;
 }
 
 [class-specific = "mage"]:hover {
-    background: mediumslateblue;
+    background-color: mediumslateblue;
+}
+
+[class-specific = "fireball"] {
+    background: url("../assets/fireball.png") no-repeat center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+[class-specific = "fireball"]:hover {
+    opacity: 1.0;
+}
+
+[class-specific = "heal"] {
+    left: 20px;
+    background: url("../assets/heal.png") no-repeat center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+[class-specific = "heal"]:hover {
+    opacity: 1.0;
+}
+
+[class-specific = "armageddon"] {
+    background: url("../assets/armageddon.png") no-repeat center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+[class-specific = "armageddon"]:hover {
+    opacity: 1.0;
 }
 
 .rewind {

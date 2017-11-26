@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ancient Empire</title>
+    <title>Moonrise Kingdom</title>
     <link href="../public/css/style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
@@ -16,8 +16,13 @@
             <div class="class" class-specific="archer"></div>
             <div class="class" class-specific="mage"></div>
         </div>
+        <div class="tools">
+            <div class="class" class-specific="fireball"></div>
+            <div class="class" class-specific="heal"></div>
+            <div class="class" class-specific="armageddon"></div>
+        </div>
     </div>
-    <div class="rewind"></div>
+    <div class="rewind">Rewind Tool Here</div>
 </section>
 <?php include "partials/footer.php"; ?>
 <script src="../public/scripts/gameboard.js"></script>

@@ -19,5 +19,5 @@
     }
 </style>
 <header>
-    <h1 class="game_title">Ancient Empire</h1>
+    <h1 class="game_title">Moonrise Kingdom</h1>
 </header>

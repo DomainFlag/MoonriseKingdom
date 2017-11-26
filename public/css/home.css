@@ -14,9 +14,28 @@ body {
 
 section {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     flex: 1;
 }
+
+.teams {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 
 .team_header {
     color: forestgreen;
@@ -24,14 +43,6 @@ section {
     font-size: 36px;
     font-family: "Roboto Slab", Serif;
     font-weight: 300;
-}
-
-.teams {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 .input {
@@ -56,13 +67,88 @@ section {
     color: #2a2a2a !important;
 }
 
+.colorpicker {
+    margin: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+}
+
+.compositions {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.choosing {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#selected_team {
+    font-size: 12px;
+    font-family: "Roboto", SansSerif;
+    color: darkslategrey;
+}
+
+#crystal {
+    margin-right: 10px;
+    width: 20px;
+    height: 12px;
+    transform: skew(-35deg);
+}
+
+.selection {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.composition {
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.class {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+img {
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    font-size: 14px;
+    font-family: "Roboto Slab";
+}
+
 .submit {
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-50%, 0);
     margin: 5px 0;
-    display: inline-flex;
     border: none;
     border-radius: 3px;
     background-color: crimson;
@@ -70,4 +156,10 @@ section {
     font-size: 16px;
     color: white;
     font-family: "Roboto Slab", SaSerif;
+}
+
+.assign {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
 }

@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS Action;
 DROP TABLE IF EXISTS Morpion;
 DROP TABLE IF EXISTS Placement;
 DROP TABLE IF EXISTS Miscellaneous;
-DROP TABLE IF EXISTS Armaggedon;
+DROP TABLE IF EXISTS Armageddon;
 DROP TABLE IF EXISTS BonusAttack;
 DROP TABLE IF EXISTS ActionTypes;
 DROP TABLE IF EXISTS Coordinates;
@@ -103,10 +103,10 @@ CREATE TABLE Placement(
 );
 
 #------------------------------------------------------------
-# Table: Armaggedon
+# Table: Armageddon
 #------------------------------------------------------------
 
-CREATE TABLE Armaggedon(
+CREATE TABLE Armageddon(
         idAm        int (11) Auto_increment  NOT NULL ,
         idA         Int NOT NULL REFERENCES Action(idA) ,
         idCo        Int NOT NULL REFERENCES Coordinates(idCo) ,
@@ -133,25 +133,26 @@ CREATE TABLE Morpion(
 );
 
 #------------------------------------------------------------
-# Table: AllTeams
+# Table: Composition
 #------------------------------------------------------------
 
-CREATE TABLE AllTeams(
-        idT   int (11) Auto_increment  NOT NULL ,
-        name  Varchar (25) NOT NULL ,
-        color Varchar (25) NOT NULL ,
+CREATE TABLE Composition(
+        idC   int (11) Auto_increment  NOT NULL ,
+        name  Varchar (25) NOT NULL,
+        color Varchar (25) NOT NULL DEFAULT '#000000',
         PRIMARY KEY (idT )
 )ENGINE=InnoDB;
+
 #------------------------------------------------------------
-# Table: AllMorpis
+# Table: Piece
 #------------------------------------------------------------
 
-CREATE TABLE AllMorpis(
-        idM    int (11) Auto_increment  NOT NULL ,
+CREATE TABLE Piece(
+        idP    int (11) Auto_increment  NOT NULL ,
         health Int NOT NULL ,
         damage Int NOT NULL ,
         mana   Int NOT NULL ,
-        bonus  Int ,
+        bonus  Int NULL,
         class  Varchar (25) NOT NULL ,
         PRIMARY KEY (idM )
 )ENGINE=InnoDB;
@@ -160,10 +161,10 @@ CREATE TABLE AllMorpis(
 # Table: Appartient
 #------------------------------------------------------------
 
-CREATE TABLE Appartient(
-        idT Int NOT NULL REFERENCES AllTeams(idT),
-        idM Int NOT NULL REFERENCES AllMorpis(idM),
-        PRIMARY KEY (idT ,idM )
+CREATE TABLE Belongs(
+        idC Int NOT NULL REFERENCES Composition(idC),
+        idP Int NOT NULL REFERENCES Piece(idP),
+        PRIMARY KEY (idC, idP )
 )ENGINE=InnoDB;
 
 
