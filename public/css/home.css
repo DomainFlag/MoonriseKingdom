@@ -13,6 +13,7 @@ body {
 }
 
 section {
+    z-index: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,4 +163,125 @@ img {
     position: absolute;
     display: flex;
     flex-direction: column;
+}
+
+.team_creator {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 300;
+    font-size: 13px;
+    font-family: "Roboto Slab", Serif;
+    height: 40px;
+    width: 120px;
+    border-radius: 4px;
+    background-color: chocolate;
+}
+
+.team_creator:active {
+    background-color: saddlebrown;
+}
+
+.custom_composition {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: absolute;
+    background-color: whitesmoke;
+    width: 350px;
+    height: 300px;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+.close {
+    padding: 3px 6px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-150%, 50%);
+    background-color: crimson;
+    color: white;
+    font-weight: 500;
+    font-family: "Roboto Slab", Serif;
+}
+
+.close:hover {
+    background-color: chocolate;
+    font-weight: 900;
+}
+
+.count {
+    padding: 20px;
+    color: darkslategrey;
+    font-weight: 300;
+    font-size: 15px;
+    font-family: "Roboto Slab", Serif;
+}
+
+.interface {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
+    flex-direction: column;
+}
+
+.custom_class {
+    margin: 10px 15px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: row;
+}
+
+.add {
+    height: auto;
+    width: 20px;
+}
+
+.stats {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.health {
+    margin: 0 15px;
+    width: 20px;
+    height: 20px;
+    background: url("./../assets/health.png") no-repeat;
+    background-size: contain;
+}
+
+
+.attack {
+    margin: 0 15px;
+    width: 20px;
+    height: 20px;
+    background: url("./../assets/attack.png") no-repeat;
+    background-size: contain;
+}
+
+
+.mana {
+    margin: 0 15px;
+    width: 20px;
+    height: 20px;
+    background: url("./../assets/mana.png") no-repeat;
+    background-size: contain;
 }

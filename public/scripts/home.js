@@ -11,32 +11,213 @@ function getChildIndex(composition) {
 document.querySelector(".submit").addEventListener("click", function(e) {
     if(!document.cookie.split("PHPSESSID=").pop()) {
         let request = new XMLHttpRequest();
-        request.open("POST", "../app/main.php");
-        request.setRequestHeader("Content-Type", "application/json");
-        request.addEventListener("load", function(req, res) {
-            window.location.href = "index.php";
-        });
         let inputs = document.getElementsByClassName("input");
-        teams[0].name = inputs[0].value;
-        teams[1].name = inputs[1].value;
-        request.send(JSON.stringify({
-            "teams" : [
-                {
-                    "name" : teams[0].name,
-                    "color" : teams[0].color.style.backgroundColor,
-                    "composition" : getChildIndex(teams[0].composition)
-                }, {
-                    "name" : teams[1].name,
-                    "color" : teams[1].color.style.backgroundColor,
-                    "composition" : getChildIndex(teams[1].composition)
-                }
-            ],
-            "dimension" : selectedDimension
-        }));
+        if(customs_compositions[0].count === 0 && customs_compositions[0].count === 0) {
+            request.open("POST", "../app/customGame.php");
+            request.setRequestHeader("Content-Type", "application/json");
+            request.addEventListener("load", function(req, res) {
+                window.location.href = "index.php";
+            });
+            teams[0].name = inputs[0].value;
+            teams[1].name = inputs[1].value;
+            console.log(JSON.stringify({
+                "teams" : [
+                    {
+                        "name" : teams[0].name,
+                        "color" : teams[0].color.style.backgroundColor,
+                        "composition" : customs_compositions[0].morpions
+                    }, {
+                        "name" : teams[1].name,
+                        "color" : teams[1].color.style.backgroundColor,
+                        "composition" : customs_compositions[1].morpions
+                    }
+                ],
+                "dimension" : selectedDimension
+            }));
+        } else {
+            request.open("POST", "../app/main.php");
+            request.setRequestHeader("Content-Type", "application/json");
+            request.addEventListener("load", function(req, res) {
+                window.location.href = "index.php";
+            });
+            teams[0].name = inputs[0].value;
+            teams[1].name = inputs[1].value;
+            request.send(JSON.stringify({
+                "teams" : [
+                    {
+                        "name" : teams[0].name,
+                        "color" : teams[0].color.style.backgroundColor,
+                        "composition" : getChildIndex(teams[0].composition)
+                    }, {
+                        "name" : teams[1].name,
+                        "color" : teams[1].color.style.backgroundColor,
+                        "composition" : getChildIndex(teams[1].composition)
+                    }
+                ],
+                "dimension" : selectedDimension
+            }));
+        }
     } else {
         window.location.href = "index.php";
     }
 });
+
+/* Custom Team Customisation: */
+function Warrior() {
+    this.health = 6;
+    this.attack = 4;
+}
+
+function Archer() {
+    this.health = 8;
+    this.attack = 2;
+}
+
+function Mage() {
+    this.health = 7;
+    this.attack = 2;
+    this.mana = 3;
+}
+
+let chose = 0;
+let customs_compositions = [
+    {
+        "count" : 10,
+        "morpions" : {
+            "warrior" : [],
+            "archer" : [],
+            "mage" : []
+        }
+    }, {
+        "count" : 10,
+        "morpions" : {
+            "warrior" : [],
+            "archer" : [],
+            "mage" : []
+        }
+    }
+];
+
+let customs = document.getElementsByClassName("team_creator");
+for(let i = 0; i < 2; i++) {
+    customs[i].addEventListener("click", function(e) {
+        chose = i;
+        document.querySelector(".custom_composition").style.visibility = "visible";
+        showCustomComposition(chose);
+        e.stopPropagation();
+        document.querySelector("section").addEventListener("click", function(e) {
+            document.querySelector(".custom_composition").style.visibility = "hidden";
+            e.stopPropagation();
+            document.querySelector("section").removeEventListener("click", this);
+        });
+    });
+}
+
+
+let customInterface  = document.querySelector(".interface");
+function showCustomComposition(index) {
+    let team_1 = customs_compositions[index];
+    let customClasses = customInterface.getElementsByClassName("custom_class");
+    let spirits = customInterface.getElementsByClassName("predefined_spirit");
+    let taken = customInterface.getElementsByClassName("taken");
+    let stats = customInterface.querySelector(".stats");
+
+    for(let i = 0; i < taken.length; i++) {
+        while(taken[i].firstChild) {
+            taken[i].removeChild(taken[i].firstChild);
+        }
+    }
+
+    let ind = 0;
+    for(let type in team_1.morpions) {
+        if(team_1.morpions.hasOwnProperty(type)) {
+            let typeMorpions = team_1.morpions[type];
+            typeMorpions.forEach(function(morpion, morpionIndex) {
+                let spirit = spirits[ind].cloneNode(true);
+                spirit.className = "spirits";
+                let typeIndex = ind;
+                spirit.addEventListener("click", function(e) {
+                    while(stats.firstChild) {
+                        stats.removeChild(stats.firstChild);
+                    }
+
+                    let properties = Object.keys(customs_compositions[index].morpions[Object.keys(types)[typeIndex]][morpionIndex]);
+
+                    let total = document.createElement("p");
+                    total.className = "count";
+                    let sum = 0;
+                    for(let g = 0; g < properties.length; g++) {
+                        sum += customs_compositions[index].morpions[Object.keys(types)[typeIndex]][morpionIndex][properties[g]];
+                    }
+                    total.textContent = "Total: " + sum;
+
+                    for(let g = 0; g < properties.length; g++) {
+                        let stat = document.createElement("div");
+                        stat.className = "stat";
+
+                        let effectType = document.createElement("div");
+                        effectType.className = properties[g];
+                        let effectValue = document.createElement("select");
+                        for(let i = 0; i <= 10; i++) {
+                            let option = document.createElement("option");
+                            option.value = i;
+                            option.text = i;
+                            effectValue.appendChild(option);
+                        }
+                        effectValue.selectedIndex = customs_compositions[index].morpions[Object.keys(types)[typeIndex]][morpionIndex][properties[g]];
+                        effectValue.addEventListener("change", function(e) {
+                            let selects = stats.getElementsByTagName("select");
+                            customs_compositions[index].morpions[Object.keys(types)[typeIndex]][morpionIndex][properties[g]] = Number(selects[g].selectedOptions[0].value);
+
+                            let sum = 0;
+                            for(let g = 0; g < selects.length; g++) {
+                                sum += Number(selects[g].selectedOptions[0].value);
+                            }
+                            total.textContent = "Total: " + sum;
+                        });
+
+                        stat.appendChild(effectType);
+                        stat.appendChild(effectValue);
+                        stats.appendChild(stat);
+                    }
+                    stats.appendChild(total);
+                });
+
+                taken[ind].appendChild(spirit);
+            });
+            ind++;
+        }
+    }
+}
+
+document.querySelector(".custom_composition").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+
+document.querySelector(".close").addEventListener("click", function(e) {
+    document.querySelector(".custom_composition").style.visibility = "hidden";
+});
+
+let types = {"warrior" : function() {
+    return new Warrior();
+}, "archer" : function() {
+    return new Archer();
+}, "mage" : function() {
+    return new Mage();
+}};
+
+let adds = document.getElementsByClassName("add");
+for(let g = 0; g < adds.length; g++) {
+    adds[g].addEventListener("click", function(e) {
+        if(customs_compositions[chose].count !== 0) {
+            document.querySelector(".count").textContent = --customs_compositions[chose].count + " Morpions Left";
+            customs_compositions[chose].morpions[Object.keys(types)[g]].push(types[Object.keys(types)[g]]());
+            showCustomComposition(chose);
+            e.stopPropagation();
+        }
+    });
+}
+/* Teams Customisation: */
 
 let teams = [{
     "name" : "Team 1",

@@ -9,6 +9,7 @@
 <body>
 <?php include "partials/header.php"; ?>
 <section>
+    <p class="action"></p>
     <div class="gameboard">
         <canvas></canvas>
         <div class="tools">
@@ -22,7 +23,9 @@
             <div class="class" class-specific="armageddon"></div>
         </div>
     </div>
-    <div class="rewind">Rewind Tool Here</div>
+    <div class="rewind">
+        <p class="message"></p>
+    </div>
 </section>
 <?php include "partials/footer.php"; ?>
 <script src="../public/scripts/gameboard.js"></script>

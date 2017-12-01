@@ -17,16 +17,41 @@
     disconnectDB($connexion);
     ?>
 
+    <div class="custom_composition">
+        <div class="close">X</div>
+        <p class="count">10 Morpions Left</p>
+        <div class="interface">
+            <div class="custom_class">
+                <img class="spirits predefined_spirit" src="./../public/assets/warrior.png" />
+                <img class="add" src="./../public/assets/add.svg"/>
+                <div class="taken"></div>
+            </div>
+            <div class="custom_class">
+                <img class="spirits predefined_spirit" src="./../public/assets/archer.png" />
+                <img class="add" src="./../public/assets/add.svg"/>
+                <div class="taken"></div>
+            </div>
+            <div class="custom_class">
+                <img class="spirits predefined_spirit" src="./../public/assets/mage.png" />
+                <img class="add" src="./../public/assets/add.svg"/>
+                <div class="taken"></div>
+            </div>
+            <div class="stats"></div>
+        </div>
+    </div>
+
     <div class="teams">
         <div class="team">
             <h1 class="team_header">Team 1</h1>
             <input class="input" type="text" placeholder="Name">
             <div class="colorpicker"></div>
+            <input type="button" class="team_creator" value="Create Team">
         </div>
         <div class="team">
             <h1 class="team_header">Team 2</h1>
             <input class="input" type="text" placeholder="Name">
             <div class="colorpicker"></div>
+            <input type="button" class="team_creator" value="Create Team">
         </div>
         <div class="assign">
             <div class="dimensions">

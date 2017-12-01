@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ed93e53-c037-45b3-a356-46194538425b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/actionPlacement.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/putMorpion.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migration.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/addMorpion.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/addTeam.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/fillCoordonates.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php/initGame.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/php/fetchTeams.php" afterPath="$PROJECT_DIR$/app/fetchTeams.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2aefabf6-c39b-491d-9d61-0c02a00ad848.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/2aefabf6-c39b-491d-9d61-0c02a00ad848.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Cchiv.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Cchiv.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main.php" afterPath="$PROJECT_DIR$/app/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/connexion.php" afterPath="$PROJECT_DIR$/inc/connexion.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/constants.php" afterPath="$PROJECT_DIR$/inc/constants.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/home.css" afterPath="$PROJECT_DIR$/public/css/home.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
@@ -24,7 +11,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/scripts/home.js" afterPath="$PROJECT_DIR$/public/scripts/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home.php" afterPath="$PROJECT_DIR$/views/home.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.php" afterPath="$PROJECT_DIR$/views/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/header.php" afterPath="$PROJECT_DIR$/views/partials/header.php" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,82 +45,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/scripts/home.js">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-812">
-              <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="36" />
+            <state relative-caret-position="546">
+              <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/home.php">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="235">
+              <caret line="140" column="17" lean-forward="true" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/main.php">
+      <file leaf-file-name="gameboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/scripts/gameboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="22" column="52" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="52" />
+            <state relative-caret-position="198">
+              <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rewindGame.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/rewindGame.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="false" />
-                <marker date="1511695914697" expanded="true" signature="333:350" ph="INSERT INTO game... " />
-                <marker date="1511695914697" expanded="true" signature="333:413" ph="INSERT INTO game... " />
-                <marker date="1511695914697" expanded="true" signature="333:450" ph="INSERT INTO game... " />
-                <marker date="1511695914697" expanded="true" signature="579:638" ph="INSERT INTO team... " />
-                <marker date="1511695914697" expanded="true" signature="579:695" ph="INSERT INTO team... " />
-                <marker date="1511695914697" expanded="true" signature="825:953" ph="SELECT * FRO... *" />
-                <marker date="1511695914697" expanded="true" signature="825:959" ph="SELECT * FRO... *" />
-                <marker date="1511695914697" expanded="true" signature="840:879" ph="SELECT * FRO... AllTeams" />
-                <marker date="1511695914697" expanded="true" signature="1132:1200" ph="INSERT INTO morpion... " />
-                <marker date="1511695914697" expanded="true" signature="1132:1313" ph="INSERT INTO morpion... " />
-                <marker date="1511695914697" expanded="true" signature="1132:1334" ph="INSERT INTO morpion... " />
-                <marker date="1511695914697" expanded="true" signature="1434:1550" ph="INSERT INTO team... " />
-                <marker date="1511695914697" expanded="true" signature="1680:1814" ph="SELECT * FRO... *" />
-                <marker date="1511695914697" expanded="true" signature="1695:1734" ph="SELECT * FRO... AllTeams" />
-                <marker date="1511695914697" expanded="true" signature="1987:2189" ph="INSERT INTO morpion... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actionPlacement.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/actionPlacement.php">
+      <file leaf-file-name="fetchTeams.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/fetchTeams.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="21" />
+              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding>
-                <element signature="e#6#87#0#PHP" expanded="false" />
-                <marker date="1511712098469" expanded="true" signature="275:276" ph="SELECT * FRO... k0" />
-                <marker date="1511712098469" expanded="true" signature="316:383" ph="SELECT game.... game" />
-                <marker date="1511712098469" expanded="true" signature="496:533" ph="SELECT team.... team" />
-                <marker date="1511712098469" expanded="true" signature="496:534" ph="SELECT team.... team" />
-                <marker date="1511712098469" expanded="true" signature="496:560" ph="SELECT team.... team" />
-                <marker date="1511712098469" expanded="true" signature="496:561" ph="SELECT team.... team" />
-                <marker date="1511712098469" expanded="true" signature="496:588" ph="SELECT team.... team" />
-                <marker date="1511712098469" expanded="true" signature="705:760" ph="INSERT INTO action... " />
-                <marker date="1511712098469" expanded="true" signature="894:955" ph="INSERT INTO coordinates... " />
-                <marker date="1511712098469" expanded="true" signature="894:1003" ph="INSERT INTO coordinates... " />
-                <marker date="1511712098469" expanded="true" signature="894:1040" ph="INSERT INTO coordinates... " />
-                <marker date="1511712098469" expanded="true" signature="1183:1263" ph="INSERT INTO placement... " />
+                <element signature="e#6#97#0#PHP" expanded="false" />
+                <marker date="1511618104793" expanded="true" signature="208:269" ph="SELECT * FRO... AllTeams" />
+                <marker date="1511618104793" expanded="true" signature="208:275" ph="SELECT * FRO... Compositions" />
               </folding>
             </state>
           </provider>
@@ -143,8 +104,8 @@
       <file leaf-file-name="fetchData.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/fetchData.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="35" column="58" lean-forward="false" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="58" />
+            <state relative-caret-position="95">
+              <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
               <folding>
                 <marker date="1511702900266" expanded="true" signature="209:223" ph="SELECT * FRO... compositions" />
                 <marker date="1511702900266" expanded="true" signature="209:261" ph="SELECT * FRO... *" />
@@ -165,15 +126,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fetchTeams.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/fetchTeams.php">
+      <file leaf-file-name="customGame.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/customGame.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+            <state relative-caret-position="105">
+              <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
               <folding>
-                <element signature="e#6#97#0#PHP" expanded="false" />
-                <marker date="1511618104793" expanded="true" signature="208:269" ph="SELECT * FRO... AllTeams" />
-                <marker date="1511618104793" expanded="true" signature="208:275" ph="SELECT * FRO... Compositions" />
+                <element signature="e#6#87#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -182,8 +141,8 @@
       <file leaf-file-name="actionArmageddon.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/actionArmageddon.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="735">
+              <caret line="40" column="35" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="35" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="false" />
                 <marker date="1511715769805" expanded="true" signature="316:383" ph="SELECT game.... game" />
@@ -215,6 +174,42 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="actionPlacement.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/actionPlacement.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+              <folding>
+                <element signature="e#6#87#0#PHP" expanded="false" />
+                <marker date="1511712098469" expanded="true" signature="275:276" ph="SELECT * FRO... k0" />
+                <marker date="1511712098469" expanded="true" signature="316:383" ph="SELECT game.... game" />
+                <marker date="1511712098469" expanded="true" signature="496:533" ph="SELECT team.... team" />
+                <marker date="1511712098469" expanded="true" signature="496:534" ph="SELECT team.... team" />
+                <marker date="1511712098469" expanded="true" signature="496:560" ph="SELECT team.... team" />
+                <marker date="1511712098469" expanded="true" signature="496:561" ph="SELECT team.... team" />
+                <marker date="1511712098469" expanded="true" signature="496:588" ph="SELECT team.... team" />
+                <marker date="1511712098469" expanded="true" signature="705:760" ph="INSERT INTO action... " />
+                <marker date="1511712098469" expanded="true" signature="894:955" ph="INSERT INTO coordinates... " />
+                <marker date="1511712098469" expanded="true" signature="894:1003" ph="INSERT INTO coordinates... " />
+                <marker date="1511712098469" expanded="true" signature="894:1040" ph="INSERT INTO coordinates... " />
+                <marker date="1511712098469" expanded="true" signature="1183:1263" ph="INSERT INTO placement... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actionMiscellaneous.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/actionMiscellaneous.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="8" column="109" lean-forward="false" selection-start-line="8" selection-start-column="109" selection-end-line="8" selection-end-column="109" />
+              <folding>
+                <element signature="e#6#87#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -228,36 +223,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hig</find>
-      <find>arc(</find>
-      <find>assets</find>
-      <find>public</find>
-      <find>morpion.team</find>
-      <find>tools</find>
-      <find>highlight</find>
-      <find>Spells</find>
-      <find>board</find>
-      <find>spirits</find>
-      <find>console.l</find>
-      <find>img</find>
-      <find>teams</find>
-      <find>choos</find>
-      <find>color</find>
-      <find>red</find>
-      <find>dimension</find>
-      <find>compos</find>
-      <find>id_set</find>
-      <find>echo</find>
-      <find>XML</find>
       <find>25</find>
       <find>consol</find>
       <find>match.turns</find>
       <find>match.teams</find>
-      <find>console</find>
       <find>putMo</find>
       <find>armage</find>
       <find>identifier</find>
       <find>Arma</find>
+      <find>drawMen</find>
+      <find>turns++</find>
+      <find>placement</find>
+      <find>.action&quot;)</find>
+      <find>Placement</find>
+      <find>actionMage</find>
+      <find>rewind</find>
+      <find>=&quot;class</find>
+      <find>fores</find>
+      <find>.class</find>
+      <find>section{</find>
+      <find>z-index</find>
+      <find>url</find>
+      <find>console.og</find>
+      <find>custom_clas</find>
+      <find>appendChild(spi</find>
+      <find>console</find>
+      <find>predefine</find>
+      <find>rewin</find>
+      <find>overflow</find>
+      <find>color</find>
+      <find>this.turns++</find>
     </findStrings>
     <replaceStrings>
       <replace>tools</replace>
@@ -291,25 +286,30 @@
         <option value="$PROJECT_DIR$/php/addTeam.php" />
         <option value="$PROJECT_DIR$/database/MorpiTables.txt" />
         <option value="$PROJECT_DIR$/database/migration.txt" />
-        <option value="$PROJECT_DIR$/inc/constants.php" />
         <option value="$PROJECT_DIR$/php/fetchTeams.php" />
         <option value="$PROJECT_DIR$/sandbox/index.php" />
         <option value="$PROJECT_DIR$/inc/queryParser.php" />
-        <option value="$PROJECT_DIR$/views/index.php" />
         <option value="$PROJECT_DIR$/views/partials/header.php" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/public/css/home.css" />
-        <option value="$PROJECT_DIR$/app/main.php" />
-        <option value="$PROJECT_DIR$/public/scripts/home.js" />
         <option value="$PROJECT_DIR$/php/fetchData.php" />
         <option value="$PROJECT_DIR$/inc/connexion.php" />
         <option value="$PROJECT_DIR$/app/fetchData.php" />
         <option value="$PROJECT_DIR$/app/putMorpion.php" />
-        <option value="$PROJECT_DIR$/public/scripts/gameboard.js" />
         <option value="$PROJECT_DIR$/app/actionPlacement.php" />
-        <option value="$PROJECT_DIR$/database/migration.sql" />
         <option value="$PROJECT_DIR$/app/actionArmageddon.php" />
+        <option value="$PROJECT_DIR$/inc/constants.php" />
+        <option value="$PROJECT_DIR$/app/fetchTeams.php" />
+        <option value="$PROJECT_DIR$/app/main.php" />
+        <option value="$PROJECT_DIR$/database/migration.sql" />
+        <option value="$PROJECT_DIR$/app/actionMage.php" />
+        <option value="$PROJECT_DIR$/public/css/home.css" />
         <option value="$PROJECT_DIR$/views/home.php" />
+        <option value="$PROJECT_DIR$/public/scripts/home.js" />
+        <option value="$PROJECT_DIR$/views/index.php" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/public/scripts/gameboard.js" />
+        <option value="$PROJECT_DIR$/app/rewindGame.php" />
+        <option value="$PROJECT_DIR$/app/customGame.php" />
+        <option value="$PROJECT_DIR$/app/actionMiscellaneous.php" />
       </list>
     </option>
   </component>
@@ -340,8 +340,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -354,10 +352,50 @@
               <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="inc" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scripts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="moonrisekingdom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moonrisekingdom" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="partials" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -376,11 +414,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\local\moonrisekingdom\public\assets" />
       <recent name="C:\xampp\htdocs\local\moonrisekingdom\app" />
       <recent name="C:\xampp\htdocs\local\moonrisekingdom\inc" />
       <recent name="C:\xampp\htdocs\local\practice\public\scripts" />
       <recent name="C:\xampp\htdocs\local\practice\public\miscellaneous" />
-      <recent name="C:\xampp\htdocs\local\practice\public\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -505,11 +543,15 @@
       <workItem from="1511617874211" duration="6017000" />
       <workItem from="1511648454030" duration="8073000" />
       <workItem from="1511689208297" duration="23906000" />
+      <workItem from="1511785786523" duration="8594000" />
+      <workItem from="1511975539689" duration="1957000" />
+      <workItem from="1512086439378" duration="8375000" />
+      <workItem from="1512125003589" duration="15158000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157499000" />
+    <option name="totallyTimeSpent" value="191583000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -523,11 +565,10 @@
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31310418" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17615467" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33592018" sideWeight="0.50208986" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16380237" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33592018" sideWeight="0.49791014" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -540,6 +581,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -571,33 +613,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/service.php" />
-    <entry file="file://$PROJECT_DIR$/text.txt" />
-    <entry file="file://$PROJECT_DIR$/views/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ajax.php" />
     <entry file="file://$PROJECT_DIR$/text.txt" />
     <entry file="file://$PROJECT_DIR$/ajax.php" />
     <entry file="file://$PROJECT_DIR$/service.php" />
     <entry file="file://$PROJECT_DIR$/update.php" />
-    <entry file="file://$PROJECT_DIR$/views/partials/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/8fa59584/2aefabf6-c39b-491d-9d61-0c02a00ad848/ancient_empire.game" />
     <entry file="das://table:/8fa59584/2aefabf6-c39b-491d-9d61-0c02a00ad848/ancient_empire.action" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2aefabf6-c39b-491d-9d61-0c02a00ad848/console.sql" />
@@ -655,54 +679,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-777">
-          <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/initGame.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="163" column="27" lean-forward="false" selection-start-line="163" selection-start-column="27" selection-end-line="163" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/connexion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/php/initGame.php" />
     <entry file="das://table:/b8b86158/2aefabf6-c39b-491d-9d61-0c02a00ad848/moonrisekingdom.coordinates">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -710,74 +687,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/gameboard.js">
+    <entry file="file://$PROJECT_DIR$/php/fillCoordonates.php" />
+    <entry file="file://$PROJECT_DIR$/php/addTeam.php" />
+    <entry file="file://$PROJECT_DIR$/php/addMorpion.php" />
+    <entry file="file://$PROJECT_DIR$/inc/connexion.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="313" column="0" lean-forward="false" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
+        <state relative-caret-position="147">
+          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/constants.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migration0.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3622">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migration.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="218" column="40" lean-forward="true" selection-start-line="218" selection-start-column="40" selection-end-line="218" selection-end-column="40" />
+        <state relative-caret-position="4242">
+          <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="false" />
+            <marker date="1511695914697" expanded="true" signature="333:350" ph="INSERT INTO game... " />
+            <marker date="1511695914697" expanded="true" signature="333:413" ph="INSERT INTO game... " />
+            <marker date="1511695914697" expanded="true" signature="333:450" ph="INSERT INTO game... " />
+            <marker date="1511695914697" expanded="true" signature="579:638" ph="INSERT INTO team... " />
+            <marker date="1511695914697" expanded="true" signature="579:695" ph="INSERT INTO team... " />
+            <marker date="1511695914697" expanded="true" signature="825:953" ph="SELECT * FRO... *" />
+            <marker date="1511695914697" expanded="true" signature="825:959" ph="SELECT * FRO... *" />
+            <marker date="1511695914697" expanded="true" signature="840:879" ph="SELECT * FRO... AllTeams" />
+            <marker date="1511695914697" expanded="true" signature="1132:1200" ph="INSERT INTO morpion... " />
+            <marker date="1511695914697" expanded="true" signature="1132:1313" ph="INSERT INTO morpion... " />
+            <marker date="1511695914697" expanded="true" signature="1132:1334" ph="INSERT INTO morpion... " />
+            <marker date="1511695914697" expanded="true" signature="1434:1550" ph="INSERT INTO team... " />
+            <marker date="1511695914697" expanded="true" signature="1680:1814" ph="SELECT * FRO... *" />
+            <marker date="1511695914697" expanded="true" signature="1695:1734" ph="SELECT * FRO... AllTeams" />
+            <marker date="1511695914697" expanded="true" signature="1987:2189" ph="INSERT INTO morpion... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-812">
-          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="36" />
+        <state relative-caret-position="-1344">
+          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="146" column="18" lean-forward="false" selection-start-line="146" selection-start-column="18" selection-end-line="146" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="10" />
+        <state relative-caret-position="546">
+          <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home.php">
+    <entry file="file://$PROJECT_DIR$/app/actionMiscellaneous.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="63">
+          <caret line="8" column="109" lean-forward="false" selection-start-line="8" selection-start-column="109" selection-end-line="8" selection-end-column="109" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/fillCoordonates.php">
+    <entry file="file://$PROJECT_DIR$/app/actionPlacement.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/addTeam.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/addMorpion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="42">
+          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="false" />
+            <marker date="1511712098469" expanded="true" signature="275:276" ph="SELECT * FRO... k0" />
+            <marker date="1511712098469" expanded="true" signature="316:383" ph="SELECT game.... game" />
+            <marker date="1511712098469" expanded="true" signature="496:533" ph="SELECT team.... team" />
+            <marker date="1511712098469" expanded="true" signature="496:534" ph="SELECT team.... team" />
+            <marker date="1511712098469" expanded="true" signature="496:560" ph="SELECT team.... team" />
+            <marker date="1511712098469" expanded="true" signature="496:561" ph="SELECT team.... team" />
+            <marker date="1511712098469" expanded="true" signature="496:588" ph="SELECT team.... team" />
+            <marker date="1511712098469" expanded="true" signature="705:760" ph="INSERT INTO action... " />
+            <marker date="1511712098469" expanded="true" signature="894:955" ph="INSERT INTO coordinates... " />
+            <marker date="1511712098469" expanded="true" signature="894:1003" ph="INSERT INTO coordinates... " />
+            <marker date="1511712098469" expanded="true" signature="894:1040" ph="INSERT INTO coordinates... " />
+            <marker date="1511712098469" expanded="true" signature="1183:1263" ph="INSERT INTO placement... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/actionArmageddon.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="735">
+          <caret line="40" column="35" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="35" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="false" />
             <marker date="1511715769805" expanded="true" signature="316:383" ph="SELECT game.... game" />
@@ -808,32 +860,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/actionPlacement.php">
+    <entry file="file://$PROJECT_DIR$/app/customGame.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="21" />
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="false" />
-            <marker date="1511712098469" expanded="true" signature="275:276" ph="SELECT * FRO... k0" />
-            <marker date="1511712098469" expanded="true" signature="316:383" ph="SELECT game.... game" />
-            <marker date="1511712098469" expanded="true" signature="496:533" ph="SELECT team.... team" />
-            <marker date="1511712098469" expanded="true" signature="496:534" ph="SELECT team.... team" />
-            <marker date="1511712098469" expanded="true" signature="496:560" ph="SELECT team.... team" />
-            <marker date="1511712098469" expanded="true" signature="496:561" ph="SELECT team.... team" />
-            <marker date="1511712098469" expanded="true" signature="496:588" ph="SELECT team.... team" />
-            <marker date="1511712098469" expanded="true" signature="705:760" ph="INSERT INTO action... " />
-            <marker date="1511712098469" expanded="true" signature="894:955" ph="INSERT INTO coordinates... " />
-            <marker date="1511712098469" expanded="true" signature="894:1003" ph="INSERT INTO coordinates... " />
-            <marker date="1511712098469" expanded="true" signature="894:1040" ph="INSERT INTO coordinates... " />
-            <marker date="1511712098469" expanded="true" signature="1183:1263" ph="INSERT INTO placement... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/fetchData.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="35" column="58" lean-forward="false" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="58" />
+        <state relative-caret-position="95">
+          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
           <folding>
             <marker date="1511702900266" expanded="true" signature="209:223" ph="SELECT * FRO... compositions" />
             <marker date="1511702900266" expanded="true" signature="209:261" ph="SELECT * FRO... *" />
@@ -853,40 +893,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="52" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="52" />
-          <folding>
-            <element signature="e#6#87#0#PHP" expanded="false" />
-            <marker date="1511695914697" expanded="true" signature="333:350" ph="INSERT INTO game... " />
-            <marker date="1511695914697" expanded="true" signature="333:413" ph="INSERT INTO game... " />
-            <marker date="1511695914697" expanded="true" signature="333:450" ph="INSERT INTO game... " />
-            <marker date="1511695914697" expanded="true" signature="579:638" ph="INSERT INTO team... " />
-            <marker date="1511695914697" expanded="true" signature="579:695" ph="INSERT INTO team... " />
-            <marker date="1511695914697" expanded="true" signature="825:953" ph="SELECT * FRO... *" />
-            <marker date="1511695914697" expanded="true" signature="825:959" ph="SELECT * FRO... *" />
-            <marker date="1511695914697" expanded="true" signature="840:879" ph="SELECT * FRO... AllTeams" />
-            <marker date="1511695914697" expanded="true" signature="1132:1200" ph="INSERT INTO morpion... " />
-            <marker date="1511695914697" expanded="true" signature="1132:1313" ph="INSERT INTO morpion... " />
-            <marker date="1511695914697" expanded="true" signature="1132:1334" ph="INSERT INTO morpion... " />
-            <marker date="1511695914697" expanded="true" signature="1434:1550" ph="INSERT INTO team... " />
-            <marker date="1511695914697" expanded="true" signature="1680:1814" ph="SELECT * FRO... *" />
-            <marker date="1511695914697" expanded="true" signature="1695:1734" ph="SELECT * FRO... AllTeams" />
-            <marker date="1511695914697" expanded="true" signature="1987:2189" ph="INSERT INTO morpion... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/fetchTeams.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+        <state relative-caret-position="105">
+          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#6#97#0#PHP" expanded="false" />
             <marker date="1511618104793" expanded="true" signature="208:269" ph="SELECT * FRO... AllTeams" />
             <marker date="1511618104793" expanded="true" signature="208:275" ph="SELECT * FRO... Compositions" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/rewindGame.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/gameboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="140" column="17" lean-forward="true" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

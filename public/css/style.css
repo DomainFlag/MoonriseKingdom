@@ -13,7 +13,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: khaki;
 }
 
 /* Section */
@@ -118,10 +117,47 @@ canvas {
 }
 
 .rewind {
-    height: 80px;
+    height: 20px;
     width: 100%;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    overflow-x: hidden;
+}
+
+.checkpoint_interval {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: coral;
+    flex: 1;
+    height: 100%;
+}
+
+.checkpoint {
+    position: absolute;
+    width: 14px;
+    height: 28px;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.checkpoint:hover {
+    opacity: 1;
+}
+
+.message {
+    transform: translate(0, -150%);
+    position: absolute;
+    font-size: 13px;
+    font-family: "Roboto", SansSerif;
+    font-weight: 300;
+}
+
+.action {
+    z-index: 1;
+    font-size: 13px;
+    font-family: "Roboto", SansSerif;
+    font-weight: 300;
 }
