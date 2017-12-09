@@ -32,5 +32,3 @@ if(isset($data)) {
     mysqli_query($connection, $req_insert_placement);
     $placement_id = mysqli_insert_id($connection);
 }
-
-disconnectDB($connection);

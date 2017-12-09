@@ -5,19 +5,17 @@
     }
 
     header {
-        height: 12%;
+        height: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .game_title {
-        font-family: "Play It Cool", "Roboto Slab", Georgia, Monospaced;
-        font-weight: 400;
-        font-size: 48px;
-        color: coral;
+        width: 200px;
+        height: auto;
     }
 </style>
 <header>
-    <h1 class="game_title">Moonrise Kingdom</h1>
+    <img src="../public/assets/logo.png" class="game_title"/>
 </header>

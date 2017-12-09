@@ -71,12 +71,11 @@ CREATE TABLE Coordinates(
 
 CREATE TABLE Miscellaneous(
         idMi        int (11) Auto_increment  NOT NULL ,
-        points      Int NOT NULL ,
         idA         Int NOT NULL ,
         type        Varchar (255) NOT NULL ,
         idM         Int NOT NULL ,
         idM_Morpion Int NOT NULL ,
-        PRIMARY KEY (idMi ,idA )
+        PRIMARY KEY (idMi )
 )ENGINE=InnoDB;
 
 
@@ -110,7 +109,7 @@ CREATE TABLE Placement(
         idPl int (11) Auto_increment  NOT NULL ,
         idA  Int NOT NULL ,
         idCo Int NOT NULL ,
-        PRIMARY KEY (idPl ,idA )
+        PRIMARY KEY (idPl )
 )ENGINE=InnoDB;
 
 
@@ -124,7 +123,7 @@ CREATE TABLE Armageddon(
         idCo        Int NOT NULL ,
         idM         Int NOT NULL ,
         idM_Morpion Int NULL ,
-        PRIMARY KEY (idAm ,idA )
+        PRIMARY KEY (idAm )
 )ENGINE=InnoDB;
 
 
@@ -141,6 +140,20 @@ CREATE TABLE Morpion(
         class  Varchar (255) NOT NULL ,
         idT    Int NOT NULL ,
         PRIMARY KEY (idM )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Attack
+#------------------------------------------------------------
+
+CREATE TABLE Attack(
+        idAt        int (11) Auto_increment  NOT NULL ,
+        bonus       Bool NOT NULL ,
+        idA         Int NOT NULL ,
+        idM         Int NOT NULL ,
+        idM_Morpion Int NOT NULL ,
+        PRIMARY KEY (idAt )
 )ENGINE=InnoDB;
 
 
@@ -197,12 +210,13 @@ ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idA FOREIGN KEY (idA) REFERE
 ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idCo FOREIGN KEY (idCo) REFERENCES Coordinates(idCo);
 ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idM FOREIGN KEY (idM) REFERENCES Morpion(idM);
 ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idM_Morpion FOREIGN KEY (idM_Morpion) REFERENCES Morpion(idM);
+ALTER TABLE Attack ADD CONSTRAINT FK_Attack_idA FOREIGN KEY (idA) REFERENCES Action(idA);
+ALTER TABLE Attack ADD CONSTRAINT FK_Attack_idM FOREIGN KEY (idM) REFERENCES Morpion(idM);
+ALTER TABLE Attack ADD CONSTRAINT FK_Attack_idM_Morpion FOREIGN KEY (idM_Morpion) REFERENCES Morpion(idM);
 ALTER TABLE Morpion ADD CONSTRAINT FK_Morpion_idT FOREIGN KEY (idT) REFERENCES Team(idT);
 ALTER TABLE Belongs ADD CONSTRAINT FK_Belongs_idT FOREIGN KEY (idT) REFERENCES Compositions(idT);
 ALTER TABLE Belongs ADD CONSTRAINT FK_Belongs_idM FOREIGN KEY (idM) REFERENCES Sample(idM);
 
-
-INSERT INTO ActionTypes VALUES("attack");
 INSERT INTO ActionTypes VALUES("throw");
 INSERT INTO ActionTypes VALUES("fireball");
 INSERT INTO ActionTypes VALUES("heal");

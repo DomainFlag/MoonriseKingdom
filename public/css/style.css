@@ -157,7 +157,73 @@ canvas {
 
 .action {
     z-index: 1;
-    font-size: 13px;
+    font-size: 16px;
+    font-family: "Roboto Slab", SansSerif;
+    font-weight: 800;
+}
+
+
+/* Popup Implementation */
+.popup {
+    z-index: 2;
+    position: absolute;
+    visibility: hidden;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transform: rotateY(-60deg);
+    transform-style: preserve-3d;
+}
+
+.toggle {
+    visibility: visible;
+    transition: all 0.5s ease-in-out;
+    transform: rotateY(0deg);
+    animation-fill-mode: forwards;
+}
+
+.fade {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.popup_header {
+    margin: 10px 0;
+    font-family: "Roboto Slab", Serif;
+    color: coral;
+    font-weight: 900;
+}
+
+.popup_paragraph {
     font-family: "Roboto", SansSerif;
-    font-weight: 300;
+    margin : 10px 30px;
+}
+
+.popup_submit {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+}
+
+.popup_action {
+    margin: 15px 5px;
+    border: 1px solid lightgray;
+    background-color: coral;
+    color: white;
+    border-radius: 3px;
+    font-size: 18px;
+    width: 120px;
+    height: 40px;
+}
+
+.popup_note {
+    font-size: 10px;
+    font-family: Roboto, SansSerif;
 }

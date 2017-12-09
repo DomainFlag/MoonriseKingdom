@@ -13,14 +13,14 @@ document.querySelector(".submit").addEventListener("click", function(e) {
         let request = new XMLHttpRequest();
         let inputs = document.getElementsByClassName("input");
         if(customs_compositions[0].count === 0 && customs_compositions[0].count === 0) {
-            request.open("POST", "../app/customGame.php");
+            request.open("POST", "../app/CustomGame.php");
             request.setRequestHeader("Content-Type", "application/json");
             request.addEventListener("load", function(req, res) {
                 window.location.href = "index.php";
             });
             teams[0].name = inputs[0].value;
             teams[1].name = inputs[1].value;
-            console.log(JSON.stringify({
+            request.send(JSON.stringify({
                 "teams" : [
                     {
                         "name" : teams[0].name,
@@ -35,7 +35,7 @@ document.querySelector(".submit").addEventListener("click", function(e) {
                 "dimension" : selectedDimension
             }));
         } else {
-            request.open("POST", "../app/main.php");
+            request.open("POST", "../app/Main.php");
             request.setRequestHeader("Content-Type", "application/json");
             request.addEventListener("load", function(req, res) {
                 window.location.href = "index.php";

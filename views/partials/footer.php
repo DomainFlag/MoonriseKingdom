@@ -1,6 +1,6 @@
 <style>
     footer {
-        height: 10%;
+        height: 2%;
         display: flex;
         justify-content: center;
         align-items: flex-end;
@@ -14,5 +14,5 @@
     }
 </style>
 <footer>
-    <h1 class="game_footer">@Copyright Reserved, Maria S. 1612248, Cristian C. 1612186</h1>
+    <h1 class="game_footer">@Copyright Reserved, Maria S. 11612224, Cristian C. 11612186</h1>
 </footer>

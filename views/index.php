@@ -22,6 +22,12 @@
             <div class="class" class-specific="heal"></div>
             <div class="class" class-specific="armageddon"></div>
         </div>
+        <div class="popup">
+            <h1 class="popup_header">Victory</h1>
+            <p class="popup_paragraph"></p>
+            <button class="popup_action">New Game</button>
+            <p class="popup_note">Or rewind down below.</p>
+        </div>
     </div>
     <div class="rewind">
         <p class="message"></p>

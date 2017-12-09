@@ -47,4 +47,4 @@ if(isset($data)) {
     }
 }
 
-disconnectDB($connection);
+include('WinCondition.php');

@@ -88,23 +88,23 @@ function Wasteland() {
 }
 
 function Warrior(morpion) {
-    this.id = morpion["idM"];
-    this.health = morpion["health"];
-    this.attack = morpion["damage"];
-    this.bonus = morpion["bonus"];
+    this.id = Number(morpion["idM"]);
+    this.health = Number(morpion["health"]);
+    this.attack = Number(morpion["damage"]);
+    this.bonus = Number(morpion["bonus"]);
 }
 
 function Archer(morpion) {
-    this.id = morpion["idM"];
-    this.health = morpion["health"];
-    this.attack = morpion["damage"];
+    this.id = Number(morpion["idM"]);
+    this.health = Number(morpion["health"]);
+    this.attack = Number(morpion["damage"]);
 }
 
 function Mage(morpion) {
-    this.id = morpion["idM"];
-    this.health = morpion["health"];
-    this.attack = morpion["damage"];
-    this.mana = morpion["mana"];
+    this.id = Number(morpion["idM"]);
+    this.health = Number(morpion["health"]);
+    this.attack = Number(morpion["damage"]);
+    this.mana = Number(morpion["mana"]);
 }
 
 function Morpion(type, state, x, y) {
@@ -118,14 +118,10 @@ Game.prototype.setMatch = function() {
     if(!document.cookie.split("PHPSESSID=").pop()) {
         window.location.href = "home.php";
     }
-    document.querySelector(".action").addEventListener("click", function() {
-
-    });
 
     this.identifier = document.cookie.split("PHPSESSID=").pop();
     this.rewind = document.querySelector(".rewind");
     this.message = document.querySelector(".message");
-    this.appendCheckpoint();
 };
 
 function Game() {
@@ -138,11 +134,13 @@ function Game() {
 
 Game.prototype.fetchData = function() {
     let request = new XMLHttpRequest();
-    request.open("GET", "../app/fetchData.php");
+    request.open("GET", "../app/FetchData.php");
     this.teams = [];
     request.addEventListener("load", function(req, res) {
         let data = JSON.parse(request.responseText);
         this.boardDimmensions = data.dimension;
+        this.setGame();
+        this.turns = data.turns;
         data.teams.forEach(function(team) {
             let teamRow = {
                 "name" : team.name,
@@ -156,13 +154,29 @@ Game.prototype.fetchData = function() {
             team.morpions.forEach(function(morpion) {
                 teamRow["morpions"][morpion.class].push(Types[morpion.class](morpion));
             }.bind(this));
+
+            team.placement.forEach(function(placement) {
+                let cell = this.board[placement.cordX][placement.cordY];
+                cell.type = Types[placement.class](placement);
+                cell.team = (Number(placement.idT)-1)%2;
+            }.bind(this));
+
             this.teams.push(teamRow);
         }.bind(this));
 
-        this.setGame();
+        data.ruin.forEach(function(magma) {
+            let cell = this.board[magma.cordX][magma.cordY];
+            cell.type = Types["wasteland"]();
+            cell.type.ruin = true;
+        }.bind(this));
+
+        document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+        document.querySelector(".action").style.color = this.teams[this.turns%2].color;
+
+        for(let checkpointIteration = 0; checkpointIteration < this.turns; checkpointIteration++) {
+            this.appendCheckpoint();
+        }
         this.drawGame();
-
-
     }.bind(this));
     request.send();
 };
@@ -190,6 +204,7 @@ Game.prototype.appendCheckpoint = function() {
 
     checkpoint.addEventListener("click", function(e) {
         this.rewindGame(index);
+        this.rewindCheckpoint(index);
     }.bind(this));
 
     checkpoint_interval.appendChild(checkpoint);
@@ -197,13 +212,60 @@ Game.prototype.appendCheckpoint = function() {
     this.rewind.appendChild(checkpoint_interval);
 };
 
+Game.prototype.rewindCheckpoint = function(turn) {
+    colors.splice(turn+1, colors.length);
+    this.turns = turn;
+    document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+    document.querySelector(".action").style.color = this.teams[this.turns%2].color;
+
+    while(this.rewind.childElementCount !== turn+1 && this.rewind.lastChild.nodeName !== "#text") {
+        this.rewind.removeChild(this.rewind.lastChild);
+    }
+};
+
 Game.prototype.rewindGame = function(turn) {
     let req = new XMLHttpRequest();
-    req.open("GET", "../app/rewindGame.php");
+    req.open("POST", "../app/RewindGame.php");
     req.setRequestHeader("Content-Type", "application/json");
-    req.addEventListener("click", function() {
-        console.log(req.responseText);
-    });
+    req.addEventListener("load", function() {
+        let data = JSON.parse(req.responseText);
+
+        this.teams.forEach(function(team) {
+            Object.keys(team.morpions).forEach(function(key) {
+                team.morpions[key].length = 0;
+            })
+        });
+
+        let teams = this.teams;
+        this.board.forEach(function(row) {
+            row.forEach(function(cell) {
+                cell.type = new Wasteland();
+                cell.team = -1;
+                cell.state = null;
+            })
+        });
+
+        data.morpions.forEach(function(team, teamIndex) {
+            team.forEach(function(morpion) {
+                teams[teamIndex].morpions[morpion.class].push(Types[morpion.class](morpion));
+            })
+        });
+
+        let board = this.board;
+        data.placement.forEach(function(team) {
+            team.forEach(function(placement) {
+                let cell = board[placement.cordX][placement.cordY];
+                cell.type = Types[placement.class](placement);
+                cell.team = (Number(placement.idT)-1)%2;
+            })
+        });
+
+        data.ruin.forEach(function(magma) {
+            let cell = board[magma.cordX][magma.cordY];
+            cell.type = Types["wasteland"]();
+            cell.type.ruin = true;
+        })
+    }.bind(this));
     req.send(JSON.stringify({
         "turn" : turn
     }));
@@ -297,7 +359,7 @@ Game.prototype.setGame = function() {
                         }
                         this.turns++;
                         this.appendCheckpoint();
-                        document.querySelector(".action").textContent = "Turn of " + this.teams[this.turns%2].name;
+                        document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
                         document.querySelector(".action").style.color = this.teams[this.turns%2].color;
                     }
                     if(this.highlight.entity.type.constructor.name === "Mage" && this.highlight.spell) {
@@ -328,7 +390,7 @@ Game.prototype.setGame = function() {
                         }
                         this.turns++;
                         this.appendCheckpoint();
-                        document.querySelector(".action").textContent = "Turn of " + this.teams[this.turns%2].name;
+                        document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
                         document.querySelector(".action").style.color = this.teams[this.turns%2].color;
                     }
                     if(affectedMorpion.type.health <= 0) {
@@ -359,7 +421,7 @@ Game.prototype.setGame = function() {
             this.teams[this.turns%2].morpions[upperCase(event.target.attributes["class-specific"].value)]--;
             this.turns++;
             this.appendCheckpoint();
-            document.querySelector(".action").textContent = "Turn of " + this.teams[this.turns%2].name;
+            document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
             document.querySelector(".action").style.color = this.teams[this.turns%2].color;
         }
         event.stopPropagation();
@@ -378,7 +440,7 @@ Game.prototype.setGame = function() {
 
 Game.prototype.putMorpion = function(morpion) {
     let request = new XMLHttpRequest();
-    request.open("POST", "../app/actionPlacement.php");
+    request.open("POST", "../app/ActionPlacement.php");
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener("load", function(req, res) {
         console.log(request.responseText);
@@ -388,7 +450,7 @@ Game.prototype.putMorpion = function(morpion) {
 
 Game.prototype.actionArmageddon = function(morpion, cell) {
     let request = new XMLHttpRequest();
-    request.open("POST", "../app/actionArmageddon.php");
+    request.open("POST", "../app/ActionArmageddon.php");
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener("load", function(req, res) {
         console.log(request.responseText);
@@ -401,11 +463,22 @@ Game.prototype.actionArmageddon = function(morpion, cell) {
 
 Game.prototype.actionMiscellaneous = function(morpion, cell, type) {
     let request = new XMLHttpRequest();
-    request.open("POST", "../app/actionMiscellaneous.php");
+    request.open("POST", "../app/ActionMiscellaneous.php");
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener("load", function(req, res) {
-        console.log(request.responseText);
-    });
+        let data = JSON.parse(request.responseText);
+        if(data.victory) {
+            let popup = document.querySelector(".popup");
+            popup.className += " toggle";
+            let popup_text = document.querySelector(".popup_paragraph");
+            popup_text.textContent = this.teams[data.team].name;
+            let content = document.querySelector("body");
+            content.className += " fade";
+            document.querySelector(".popup_action").addEventListener("click", function() {
+                window.location.href = "home.php";
+            });
+        }
+    }.bind(this));
     request.send(JSON.stringify({
         "morpion" : morpion,
         "cell" : cell,
@@ -452,15 +525,15 @@ Game.prototype.drawGame = function() {
     for(let i = 0; i < this.boardDimmensions; i++) {
         for(let g = 0; g < this.boardDimmensions; g++) {
             let morpion = this.board[i][g];
-            this.ctx.fillStyle = "khaki";
+            this.ctx.fillStyle = "#D2D7D3";
             this.ctx.fillRect(this.offsetPartition+i*this.partition, g*this.partition, this.partition, this.partition);
 
             if(!Wasteland.prototype.isPrototypeOf(morpion.type)) {
                 this.ctx.fillStyle = this.teams[morpion.team].color;
                 this.ctx.drawImage(spirits[morpion.type.constructor.name][morpion.team], this.offsetPartition+(i+0.25)*this.partition, (g+0.25)*this.partition, this.partition/2, this.partition/2);
-                this.ctx.font = "12px Roboto Slab";
+                this.ctx.font = "bold 16px Roboto Slab";
                 this.ctx.fillText(morpion.type.health, this.offsetPartition+(i+0.1)*this.partition, (g+0.9)*this.partition);
-                this.ctx.fillStyle = "khaki";
+                this.ctx.fillStyle = "#D2D7D3";
             }
         }
     }
@@ -505,8 +578,8 @@ Game.prototype.drawGame = function() {
         }
     }
 
-    this.ctx.strokeStyle = "coral";
-    this.ctx.lineWidth = 5;
+    this.ctx.strokeStyle = "#D24D57";
+    this.ctx.lineWidth = 3;
     for(let g = 0; g < this.boardDimmensions-1; g++) {
         this.ctx.beginPath();
         this.ctx.moveTo(this.offsetPartition + (g+1)*this.partition, 0);

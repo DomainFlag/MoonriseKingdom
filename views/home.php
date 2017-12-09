@@ -11,7 +11,7 @@
 <section>
 
     <?php
-    include('../app/fetchTeams.php');
+    include('../app/FetchTeams.php');
     $connexion = connectDB();
     $data = getTeams($connexion);
     disconnectDB($connexion);
