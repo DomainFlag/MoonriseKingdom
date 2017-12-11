@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# Database: MoonriseKingdom
+# Database: MoonriseKingdom | If you are on LocalHost
 #------------------------------------------------------------
 
 DROP DATABASE IF EXISTS MoonriseKingdom;
@@ -10,25 +10,27 @@ USE MoonriseKingdom;
 # Dropping existing tables
 #------------------------------------------------------------
 
-DROP TABLE IF EXISTS Game;
-DROP TABLE IF EXISTS Team;
-DROP TABLE IF EXISTS Coordinates;
-DROP TABLE IF EXISTS Miscellaneous;
-DROP TABLE IF EXISTS ActionTypes;
-DROP TABLE IF EXISTS Action;
-DROP TABLE IF EXISTS Placement;
-DROP TABLE IF EXISTS Armageddon;
-DROP TABLE IF EXISTS Morpion;
-DROP TABLE IF EXISTS Compositions;
-DROP TABLE IF EXISTS Sample;
-DROP TABLE IF EXISTS Belongs;
+SET foreign_key_checks = 0;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS team;
+DROP TABLE IF EXISTS coordinates;
+DROP TABLE IF EXISTS miscellaneous;
+DROP TABLE IF EXISTS actiontypes;
+DROP TABLE IF EXISTS action;
+DROP TABLE IF EXISTS attack;
+DROP TABLE IF EXISTS placement;
+DROP TABLE IF EXISTS armageddon;
+DROP TABLE IF EXISTS morpion;
+DROP TABLE IF EXISTS compositions;
+DROP TABLE IF EXISTS sample;
+DROP TABLE IF EXISTS belongs;
 
 
 #------------------------------------------------------------
-# Table: Game
+# Table: game
 #------------------------------------------------------------
 
-CREATE TABLE Game(
+CREATE TABLE game(
         idG        Int (11) Auto_increment  NOT NULL ,
         identifier Varchar (255) NOT NULL ,
         dimension  Int NOT NULL ,
@@ -39,10 +41,10 @@ CREATE TABLE Game(
 
 
 #------------------------------------------------------------
-# Table: Team
+# Table: team
 #------------------------------------------------------------
 
-CREATE TABLE Team(
+CREATE TABLE team(
         idT   int (11) Auto_increment  NOT NULL ,
         name  Varchar (255) NOT NULL ,
         color Varchar (255) NOT NULL ,
@@ -52,10 +54,10 @@ CREATE TABLE Team(
 
 
 #------------------------------------------------------------
-# Table: Coordinates
+# Table: coordinates
 #------------------------------------------------------------
 
-CREATE TABLE Coordinates(
+CREATE TABLE coordinates(
         idCo  int (11) Auto_increment  NOT NULL ,
         cordX Int NOT NULL ,
         cordY Int NOT NULL ,
@@ -67,35 +69,34 @@ CREATE TABLE Coordinates(
 
 
 #------------------------------------------------------------
-# Table: Miscellaneous
+# Table: miscellaneous
 #------------------------------------------------------------
 
-CREATE TABLE Miscellaneous(
+CREATE TABLE miscellaneous(
         idMi        int (11) Auto_increment  NOT NULL ,
-        points      Int NOT NULL ,
         idA         Int NOT NULL ,
         type        Varchar (255) NOT NULL ,
         idM         Int NOT NULL ,
-        idM_Morpion Int NOT NULL ,
+        idM_morpion Int NOT NULL ,
         PRIMARY KEY (idMi ,idA )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: ActionTypes
+# Table: actiontypes
 #------------------------------------------------------------
 
-CREATE TABLE ActionTypes(
+CREATE TABLE actiontypes(
         type Varchar (255) NOT NULL ,
         PRIMARY KEY (type )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: Action
+# Table: action
 #------------------------------------------------------------
 
-CREATE TABLE Action(
+CREATE TABLE action(
         idA int (11) Auto_increment  NOT NULL ,
         idG Int NOT NULL ,
         idT Int NOT NULL ,
@@ -104,10 +105,10 @@ CREATE TABLE Action(
 
 
 #------------------------------------------------------------
-# Table: Placement
+# Table: placement
 #------------------------------------------------------------
 
-CREATE TABLE Placement(
+CREATE TABLE placement(
         idPl int (11) Auto_increment  NOT NULL ,
         idA  Int NOT NULL ,
         idCo Int NOT NULL ,
@@ -116,37 +117,37 @@ CREATE TABLE Placement(
 
 
 #------------------------------------------------------------
-# Table: Attack
+# Table: attack
 #------------------------------------------------------------
 
-CREATE TABLE Attack(
+CREATE TABLE attack(
         idAt        int (11) Auto_increment  NOT NULL ,
         bonus       Bool NOT NULL ,
         idA         Int NOT NULL ,
         idM         Int NOT NULL ,
-        idM_Morpion Int NOT NULL ,
+        idM_morpion Int NOT NULL ,
         PRIMARY KEY (idAt ,idA )
 )ENGINE=InnoDB;
 
 #------------------------------------------------------------
-# Table: Armageddon
+# Table: armageddon
 #------------------------------------------------------------
 
-CREATE TABLE Armageddon(
+CREATE TABLE armageddon(
         idAm        int (11) Auto_increment  NOT NULL ,
         idA         Int NOT NULL ,
         idCo        Int NOT NULL ,
         idM         Int NOT NULL ,
-        idM_Morpion Int NULL ,
+        idM_morpion Int NULL ,
         PRIMARY KEY (idAm ,idA )
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: Morpion
+# Table: morpion
 #------------------------------------------------------------
 
-CREATE TABLE Morpion(
+CREATE TABLE morpion(
         idM    int (11) Auto_increment  NOT NULL ,
         health Int NOT NULL ,
         damage Int NOT NULL ,
@@ -159,10 +160,10 @@ CREATE TABLE Morpion(
 
 
 #------------------------------------------------------------
-# Table: Compositions
+# Table: compositions
 #------------------------------------------------------------
 
-CREATE TABLE Compositions(
+CREATE TABLE compositions(
         idT   int (11) Auto_increment  NOT NULL ,
         name  Varchar (255) NOT NULL ,
         color Varchar (255) NOT NULL ,
@@ -171,10 +172,10 @@ CREATE TABLE Compositions(
 
 
 #------------------------------------------------------------
-# Table: Sample
+# Table: sample
 #------------------------------------------------------------
 
-CREATE TABLE Sample(
+CREATE TABLE sample(
         idM    int (11) Auto_increment  NOT NULL ,
         health Int NOT NULL ,
         damage Int NOT NULL ,
@@ -186,98 +187,98 @@ CREATE TABLE Sample(
 
 
 #------------------------------------------------------------
-# Table: Belongs
+# Table: belongs
 #------------------------------------------------------------
 
-CREATE TABLE Belongs(
+CREATE TABLE belongs(
         idB int (11) Auto_increment  NOT NULL ,
         idT Int NOT NULL ,
         idM Int NOT NULL ,
         PRIMARY KEY (idB )
 )ENGINE=InnoDB;
 
-ALTER TABLE Game ADD CONSTRAINT FK_Game_idT FOREIGN KEY (idT) REFERENCES Team(idT);
-ALTER TABLE Team ADD CONSTRAINT FK_Team_idG FOREIGN KEY (idG) REFERENCES Game(idG);
-ALTER TABLE Coordinates ADD CONSTRAINT FK_Coordinates_idM FOREIGN KEY (idM) REFERENCES Morpion(idM);
-ALTER TABLE Coordinates ADD CONSTRAINT FK_Coordinates_idG FOREIGN KEY (idG) REFERENCES Game(idG);
-ALTER TABLE Miscellaneous ADD CONSTRAINT FK_Miscellaneous_idA FOREIGN KEY (idA) REFERENCES Action(idA);
-ALTER TABLE Miscellaneous ADD CONSTRAINT FK_Miscellaneous_type FOREIGN KEY (type) REFERENCES ActionTypes(type);
-ALTER TABLE Miscellaneous ADD CONSTRAINT FK_Miscellaneous_idM FOREIGN KEY (idM) REFERENCES Morpion(idM);
-ALTER TABLE Miscellaneous ADD CONSTRAINT FK_Miscellaneous_idM_Morpion FOREIGN KEY (idM_Morpion) REFERENCES Morpion(idM);
-ALTER TABLE Action ADD CONSTRAINT FK_Action_idG FOREIGN KEY (idG) REFERENCES Game(idG);
-ALTER TABLE Action ADD CONSTRAINT FK_Action_idT FOREIGN KEY (idT) REFERENCES Team(idT);
-ALTER TABLE Placement ADD CONSTRAINT FK_Placement_idA FOREIGN KEY (idA) REFERENCES Action(idA);
-ALTER TABLE Placement ADD CONSTRAINT FK_Placement_idCo FOREIGN KEY (idCo) REFERENCES Coordinates(idCo);
-ALTER TABLE Attack ADD CONSTRAINT FK_Attack_idA FOREIGN KEY (idA) REFERENCES Action(idA);
-ALTER TABLE Attack ADD CONSTRAINT FK_Attack_idM FOREIGN KEY (idM) REFERENCES Morpion(idM);
-ALTER TABLE Attack ADD CONSTRAINT FK_Attack_idM_Morpion FOREIGN KEY (idM_Morpion) REFERENCES Morpion(idM);
-ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idA FOREIGN KEY (idA) REFERENCES Action(idA);
-ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idCo FOREIGN KEY (idCo) REFERENCES Coordinates(idCo);
-ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idM FOREIGN KEY (idM) REFERENCES Morpion(idM);
-ALTER TABLE Armageddon ADD CONSTRAINT FK_Armageddon_idM_Morpion FOREIGN KEY (idM_Morpion) REFERENCES Morpion(idM);
-ALTER TABLE Morpion ADD CONSTRAINT FK_Morpion_idT FOREIGN KEY (idT) REFERENCES Team(idT);
-ALTER TABLE Belongs ADD CONSTRAINT FK_Belongs_idT FOREIGN KEY (idT) REFERENCES Compositions(idT);
-ALTER TABLE Belongs ADD CONSTRAINT FK_Belongs_idM FOREIGN KEY (idM) REFERENCES Sample(idM);
+ALTER TABLE game ADD CONSTRAINT FK_game_idT FOREIGN KEY (idT) REFERENCES team(idT);
+ALTER TABLE team ADD CONSTRAINT FK_team_idG FOREIGN KEY (idG) REFERENCES game(idG);
+ALTER TABLE coordinates ADD CONSTRAINT FK_coordinates_idM FOREIGN KEY (idM) REFERENCES morpion(idM);
+ALTER TABLE coordinates ADD CONSTRAINT FK_coordinates_idG FOREIGN KEY (idG) REFERENCES game(idG);
+ALTER TABLE miscellaneous ADD CONSTRAINT FK_miscellaneous_idA FOREIGN KEY (idA) REFERENCES action(idA);
+ALTER TABLE miscellaneous ADD CONSTRAINT FK_miscellaneous_type FOREIGN KEY (type) REFERENCES actiontypes(type);
+ALTER TABLE miscellaneous ADD CONSTRAINT FK_miscellaneous_idM FOREIGN KEY (idM) REFERENCES morpion(idM);
+ALTER TABLE miscellaneous ADD CONSTRAINT FK_miscellaneous_idM_morpion FOREIGN KEY (idM_morpion) REFERENCES morpion(idM);
+ALTER TABLE action ADD CONSTRAINT FK_action_idG FOREIGN KEY (idG) REFERENCES game(idG);
+ALTER TABLE action ADD CONSTRAINT FK_action_idT FOREIGN KEY (idT) REFERENCES team(idT);
+ALTER TABLE placement ADD CONSTRAINT FK_placement_idA FOREIGN KEY (idA) REFERENCES action(idA);
+ALTER TABLE placement ADD CONSTRAINT FK_placement_idCo FOREIGN KEY (idCo) REFERENCES coordinates(idCo);
+ALTER TABLE attack ADD CONSTRAINT FK_attack_idA FOREIGN KEY (idA) REFERENCES action(idA);
+ALTER TABLE attack ADD CONSTRAINT FK_attack_idM FOREIGN KEY (idM) REFERENCES morpion(idM);
+ALTER TABLE attack ADD CONSTRAINT FK_attack_idM_morpion FOREIGN KEY (idM_morpion) REFERENCES morpion(idM);
+ALTER TABLE armageddon ADD CONSTRAINT FK_armageddon_idA FOREIGN KEY (idA) REFERENCES action(idA);
+ALTER TABLE armageddon ADD CONSTRAINT FK_armageddon_idCo FOREIGN KEY (idCo) REFERENCES coordinates(idCo);
+ALTER TABLE armageddon ADD CONSTRAINT FK_armageddon_idM FOREIGN KEY (idM) REFERENCES morpion(idM);
+ALTER TABLE armageddon ADD CONSTRAINT FK_armageddon_idM_morpion FOREIGN KEY (idM_morpion) REFERENCES morpion(idM);
+ALTER TABLE morpion ADD CONSTRAINT FK_morpion_idT FOREIGN KEY (idT) REFERENCES team(idT);
+ALTER TABLE belongs ADD CONSTRAINT FK_belongs_idT FOREIGN KEY (idT) REFERENCES compositions(idT);
+ALTER TABLE belongs ADD CONSTRAINT FK_belongs_idM FOREIGN KEY (idM) REFERENCES sample(idM);
 
-INSERT INTO ActionTypes VALUES("throw");
-INSERT INTO ActionTypes VALUES("fireball");
-INSERT INTO ActionTypes VALUES("heal");
+INSERT INTO actiontypes VALUES("throw");
+INSERT INTO actiontypes VALUES("fireball");
+INSERT INTO actiontypes VALUES("heal");
 
-INSERT INTO Compositions(name,color) VALUES('Team_1', '#ff0fff');
-INSERT INTO Compositions(name,color) VALUES('Team_2', '#f00fff');
-INSERT INTO Compositions(name,color) VALUES('Team_3', '#ff0fff');
-INSERT INTO Compositions(name,color) VALUES('Team_4', '#f00fff');
-INSERT INTO Compositions(name,color) VALUES('Team_5', '#ff0fff');
-INSERT INTO Compositions(name,color) VALUES('Team_6', '#f00fff');
+INSERT INTO compositions(name,color) VALUES('team_1', '#ff0fff');
+INSERT INTO compositions(name,color) VALUES('team_2', '#f00fff');
+INSERT INTO compositions(name,color) VALUES('team_3', '#ff0fff');
+INSERT INTO compositions(name,color) VALUES('team_4', '#f00fff');
+INSERT INTO compositions(name,color) VALUES('team_5', '#ff0fff');
+INSERT INTO compositions(name,color) VALUES('team_6', '#f00fff');
 
-INSERT INTO Sample(health,damage,mana,bonus,class) VALUES(8,2,0,10,"warrior");
-INSERT INTO Sample(health,damage,mana,bonus,class) VALUES(3,2,5,0,"mage");
-INSERT INTO Sample(health,damage,mana,bonus,class) VALUES(8,2,0,0,"archer");
+INSERT INTO sample(health,damage,mana,bonus,class) VALUES(8,2,0,10,"warrior");
+INSERT INTO sample(health,damage,mana,bonus,class) VALUES(3,2,5,0,"mage");
+INSERT INTO sample(health,damage,mana,bonus,class) VALUES(8,2,0,0,"archer");
 
-INSERT INTO Belongs(idT,idM) VALUES(1, 1);
-INSERT INTO Belongs(idT,idM) VALUES(1, 1);
-INSERT INTO Belongs(idT,idM) VALUES(1, 1);
-INSERT INTO Belongs(idT,idM) VALUES(1, 2);
-INSERT INTO Belongs(idT,idM) VALUES(1, 2);
-INSERT INTO Belongs(idT,idM) VALUES(1, 3);
-INSERT INTO Belongs(idT,idM) VALUES(1, 3);
+INSERT INTO belongs(idT,idM) VALUES(1, 1);
+INSERT INTO belongs(idT,idM) VALUES(1, 1);
+INSERT INTO belongs(idT,idM) VALUES(1, 1);
+INSERT INTO belongs(idT,idM) VALUES(1, 2);
+INSERT INTO belongs(idT,idM) VALUES(1, 2);
+INSERT INTO belongs(idT,idM) VALUES(1, 3);
+INSERT INTO belongs(idT,idM) VALUES(1, 3);
 
-INSERT INTO Belongs(idT,idM) VALUES(2, 1);
-INSERT INTO Belongs(idT,idM) VALUES(2, 1);
-INSERT INTO Belongs(idT,idM) VALUES(2, 2);
-INSERT INTO Belongs(idT,idM) VALUES(2, 2);
-INSERT INTO Belongs(idT,idM) VALUES(2, 3);
-INSERT INTO Belongs(idT,idM) VALUES(2, 3);
-INSERT INTO Belongs(idT,idM) VALUES(2, 3);
+INSERT INTO belongs(idT,idM) VALUES(2, 1);
+INSERT INTO belongs(idT,idM) VALUES(2, 1);
+INSERT INTO belongs(idT,idM) VALUES(2, 2);
+INSERT INTO belongs(idT,idM) VALUES(2, 2);
+INSERT INTO belongs(idT,idM) VALUES(2, 3);
+INSERT INTO belongs(idT,idM) VALUES(2, 3);
+INSERT INTO belongs(idT,idM) VALUES(2, 3);
 
-INSERT INTO Belongs(idT,idM) VALUES(3, 1);
-INSERT INTO Belongs(idT,idM) VALUES(3, 1);
-INSERT INTO Belongs(idT,idM) VALUES(3, 1);
-INSERT INTO Belongs(idT,idM) VALUES(3, 1);
-INSERT INTO Belongs(idT,idM) VALUES(3, 2);
-INSERT INTO Belongs(idT,idM) VALUES(3, 3);
-INSERT INTO Belongs(idT,idM) VALUES(3, 3);
+INSERT INTO belongs(idT,idM) VALUES(3, 1);
+INSERT INTO belongs(idT,idM) VALUES(3, 1);
+INSERT INTO belongs(idT,idM) VALUES(3, 1);
+INSERT INTO belongs(idT,idM) VALUES(3, 1);
+INSERT INTO belongs(idT,idM) VALUES(3, 2);
+INSERT INTO belongs(idT,idM) VALUES(3, 3);
+INSERT INTO belongs(idT,idM) VALUES(3, 3);
 
-INSERT INTO Belongs(idT,idM) VALUES(4, 1);
-INSERT INTO Belongs(idT,idM) VALUES(4, 2);
-INSERT INTO Belongs(idT,idM) VALUES(4, 2);
-INSERT INTO Belongs(idT,idM) VALUES(4, 2);
-INSERT INTO Belongs(idT,idM) VALUES(4, 3);
-INSERT INTO Belongs(idT,idM) VALUES(4, 3);
-INSERT INTO Belongs(idT,idM) VALUES(4, 3);
+INSERT INTO belongs(idT,idM) VALUES(4, 1);
+INSERT INTO belongs(idT,idM) VALUES(4, 2);
+INSERT INTO belongs(idT,idM) VALUES(4, 2);
+INSERT INTO belongs(idT,idM) VALUES(4, 2);
+INSERT INTO belongs(idT,idM) VALUES(4, 3);
+INSERT INTO belongs(idT,idM) VALUES(4, 3);
+INSERT INTO belongs(idT,idM) VALUES(4, 3);
 
-INSERT INTO Belongs(idT,idM) VALUES(5, 1);
-INSERT INTO Belongs(idT,idM) VALUES(5, 2);
-INSERT INTO Belongs(idT,idM) VALUES(5, 2);
-INSERT INTO Belongs(idT,idM) VALUES(5, 2);
-INSERT INTO Belongs(idT,idM) VALUES(5, 2);
-INSERT INTO Belongs(idT,idM) VALUES(5, 2);
-INSERT INTO Belongs(idT,idM) VALUES(5, 3);
+INSERT INTO belongs(idT,idM) VALUES(5, 1);
+INSERT INTO belongs(idT,idM) VALUES(5, 2);
+INSERT INTO belongs(idT,idM) VALUES(5, 2);
+INSERT INTO belongs(idT,idM) VALUES(5, 2);
+INSERT INTO belongs(idT,idM) VALUES(5, 2);
+INSERT INTO belongs(idT,idM) VALUES(5, 2);
+INSERT INTO belongs(idT,idM) VALUES(5, 3);
 
-INSERT INTO Belongs(idT,idM) VALUES(6, 1);
-INSERT INTO Belongs(idT,idM) VALUES(6, 2);
-INSERT INTO Belongs(idT,idM) VALUES(6, 3);
-INSERT INTO Belongs(idT,idM) VALUES(6, 3);
-INSERT INTO Belongs(idT,idM) VALUES(6, 3);
-INSERT INTO Belongs(idT,idM) VALUES(6, 3);
-INSERT INTO Belongs(idT,idM) VALUES(6, 3);
+INSERT INTO belongs(idT,idM) VALUES(6, 1);
+INSERT INTO belongs(idT,idM) VALUES(6, 2);
+INSERT INTO belongs(idT,idM) VALUES(6, 3);
+INSERT INTO belongs(idT,idM) VALUES(6, 3);
+INSERT INTO belongs(idT,idM) VALUES(6, 3);
+INSERT INTO belongs(idT,idM) VALUES(6, 3);
+INSERT INTO belongs(idT,idM) VALUES(6, 3);

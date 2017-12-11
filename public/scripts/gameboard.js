@@ -40,7 +40,7 @@ for(let property in spirits) {
     if(spirits.hasOwnProperty(property)) {
         for(let g = 1; g <= 2; g++) {
             let img = document.createElement("img");
-            img.src = "../public/assets/" + property + "_team_" + g + ".png";
+            img.src = "../public/assets/" + lowerCase(property) + "_team_" + g + ".png";
             spirits[property].push(img);
         }
     }
@@ -150,7 +150,7 @@ Game.prototype.setDPI = function() {
 
 Game.prototype.setMatch = function() {
     if(!document.cookie.split("PHPSESSID=").pop()) {
-        window.location.href = "home.php";
+        window.location.href = "../views/index.php";
     }
 
     this.identifier = document.cookie.split("PHPSESSID=").pop();
@@ -498,7 +498,7 @@ function winCondition(request) {
         let content = document.querySelector("body");
         content.className += " fade";
         document.querySelector(".popup_action").addEventListener("click", function() {
-            window.location.href = "home.php";
+            window.location.href = "../views/index.php";
         });
     }
 }

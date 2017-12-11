@@ -12,7 +12,10 @@ document.querySelector(".submit").addEventListener("click", function(e) {
     if(!document.cookie.split("PHPSESSID=").pop()) {
         let request = new XMLHttpRequest();
         let inputs = document.getElementsByClassName("input");
-        if(customs_compositions[0].count >= 0 &&  customs_compositions[0].count <= 4 && customs_compositions[0].count >= 0 && customs_compositions[0].count <= 4) {
+        //Mistake during demo presentation was here :) (customs_compositions[0].count >= 0 &&  customs_compositions[0].count <= 4 && customs_compositions[0].count >= 0 && customs_compositions[0].count <= 4)
+        //Forgot to change the indexes :/
+        if(customs_compositions[0].count >= 0 &&  customs_compositions[0].count <= 4 && customs_compositions[1].count >= 0 && customs_compositions[1].count <= 4) {
+            //If the sum of stats is not 10, then it's set to default.
             customs_compositions.forEach(function(composition) {
                 for(let property in composition.morpions) {
                     if(composition.morpions.hasOwnProperty(property)) {
@@ -40,7 +43,7 @@ document.querySelector(".submit").addEventListener("click", function(e) {
             request.open("POST", "../app/CustomGame.php");
             request.setRequestHeader("Content-Type", "application/json");
             request.addEventListener("load", function(req, res) {
-                window.location.href = "index.php";
+                window.location.href = "home.php";
             });
             teams[0].name = inputs[0].value;
             teams[1].name = inputs[1].value;
@@ -62,7 +65,7 @@ document.querySelector(".submit").addEventListener("click", function(e) {
             request.open("POST", "../app/Main.php");
             request.setRequestHeader("Content-Type", "application/json");
             request.addEventListener("load", function(req, res) {
-                window.location.href = "index.php";
+                window.location.href = "home.php";
             });
             teams[0].name = inputs[0].value;
             teams[1].name = inputs[1].value;
@@ -82,7 +85,7 @@ document.querySelector(".submit").addEventListener("click", function(e) {
             }));
         }
     } else {
-        window.location.href = "index.php";
+        window.location.href = "home.php";
     }
 });
 

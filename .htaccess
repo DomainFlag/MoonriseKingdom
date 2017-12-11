@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^moonrisekingdom\.com$
+RewriteRule (.*) http://localhost/local/moonrisekingdom/$1 [L]
+RewriteRule ^$ views [L]

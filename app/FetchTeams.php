@@ -8,7 +8,7 @@
 include('../inc/constants.php');
 include('../inc/connexion.php');
 function getTeams($connexion) {
-    $req = "SELECT * FROM Compositions NATURAL JOIN Belongs NATURAL JOIN Sample;";
+    $req = "SELECT * FROM compositions NATURAL JOIN belongs NATURAL JOIN sample;";
     $res = mysqli_query($connexion, $req);
     $allTeams = array();
     while ($row = mysqli_fetch_array($res)) {
