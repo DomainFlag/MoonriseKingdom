@@ -1,6 +1,6 @@
 <style>
     footer {
-        height: 2%;
+        height: 6%;
         display: flex;
         justify-content: center;
         align-items: flex-end;

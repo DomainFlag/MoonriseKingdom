@@ -1,9 +1,4 @@
 <style>
-    @font-face {
-        font-family: "Play It Cool";
-        src:url("../public/assets/SBBTRIAL.ttf");
-    }
-
     header {
         height: 20%;
         display: flex;

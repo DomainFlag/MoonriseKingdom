@@ -17,7 +17,7 @@ if(isset($data)) {
     $req_game_id = "SELECT game.idG FROM game WHERE identifier = '" . session_id() . "';";
     $game_id = (int)mysqli_fetch_array(mysqli_query($connection, $req_game_id))["idG"];
 
-    $req_team_id = "SELECT team.idT FROM team WHERE idG = " . $game_id ." && idT%2 = " . ($data->morpion->team+1)%2 . ";";
+    $req_team_id = "SELECT team.idT FROM team WHERE idG = " . $game_id ." && idT%2 = " . $data->morpion->team . ";";
     $team_id = (int)mysqli_fetch_array(mysqli_query($connection, $req_team_id))["idT"];
 
     $req_insert_action = "INSERT INTO action(idG, idT) VALUES($game_id, $team_id)";
@@ -46,5 +46,3 @@ if(isset($data)) {
         $armageddon_id = mysqli_insert_id($connection);
     }
 }
-
-include('WinCondition.php');

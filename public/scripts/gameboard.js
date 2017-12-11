@@ -1,5 +1,7 @@
-let dimX = document.querySelector(".gameboard").clientHeight*1.25;
-let dimY = document.querySelector(".gameboard").clientHeight*4/5;
+let dimY = document.querySelector(".gameboard").clientHeight*9/10;
+let dimX = dimY*1.6;
+// dimX *= 3;
+// dimY *= 3;
 let tools = document.getElementsByClassName("tools")[0];
 let spells = document.getElementsByClassName("tools")[1];
 let square = [[-1, 0], [1, 0], [0, -1], [0, 1]];
@@ -114,6 +116,38 @@ function Morpion(type, state, x, y) {
     this.team = -1;
 }
 
+/* Game Implementation - Mechanism that drives the game */
+function Game() {
+    this.canvas = document.querySelector("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.fetchResources();
+    this.setMatch();
+    this.turns = 0;
+    this.fetchData();
+    this.setDPI();
+}
+
+Game.prototype.setDPI = function() {
+    let scaleFactor = 3;
+
+    // Backup the canvas contents.
+    let oldScaleX = this.canvas.width / dimX;
+    let oldScaleY = this.canvas.height / dimY;
+    let backupScaleX = scaleFactor / oldScaleX;
+    let backupScaleY = scaleFactor / oldScaleY;
+    let backup = this.canvas.cloneNode(false);
+    backup.getContext('2d').drawImage(this.canvas, 0, 0);
+
+    // Resize the canvas.
+    this.canvas.width = Math.ceil(dimX * scaleFactor);
+    this.canvas.height = Math.ceil(dimY * scaleFactor);
+
+    // Redraw the canvas image and scale future draws.
+    this.ctx.setTransform(backupScaleX, 0, 0, backupScaleY, 0, 0);
+    this.ctx.drawImage(backup, 0, 0);
+    this.ctx.setTransform(scaleFactor, 0, 0, scaleFactor, 0, 0);
+};
+
 Game.prototype.setMatch = function() {
     if(!document.cookie.split("PHPSESSID=").pop()) {
         window.location.href = "home.php";
@@ -124,13 +158,19 @@ Game.prototype.setMatch = function() {
     this.message = document.querySelector(".message");
 };
 
-function Game() {
-    this.canvas = document.querySelector("canvas");
-    this.ctx = this.canvas.getContext("2d");
-    this.setMatch();
-    this.turns = 0;
-    this.fetchData();
+function getImage(src) {
+    let image = document.createElement("img");
+    image.src = src;
+    return image;
 }
+
+Game.prototype.fetchResources = function() {
+    this.resources = {
+        "board" : getImage("../public/assets/board.png"),
+        "wasteland" : getImage("../public/assets/wasteland.png"),
+        "lava" : getImage("../public/assets/lava.png")
+    };
+};
 
 Game.prototype.fetchData = function() {
     let request = new XMLHttpRequest();
@@ -170,8 +210,8 @@ Game.prototype.fetchData = function() {
             cell.type.ruin = true;
         }.bind(this));
 
-        document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
-        document.querySelector(".action").style.color = this.teams[this.turns%2].color;
+        this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+        this.actionColor = this.teams[this.turns%2].color;
 
         for(let checkpointIteration = 0; checkpointIteration < this.turns; checkpointIteration++) {
             this.appendCheckpoint();
@@ -215,8 +255,8 @@ Game.prototype.appendCheckpoint = function() {
 Game.prototype.rewindCheckpoint = function(turn) {
     colors.splice(turn+1, colors.length);
     this.turns = turn;
-    document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
-    document.querySelector(".action").style.color = this.teams[this.turns%2].color;
+    this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+    this.actionColor = this.teams[this.turns%2].color;
 
     while(this.rewind.childElementCount !== turn+1 && this.rewind.lastChild.nodeName !== "#text") {
         this.rewind.removeChild(this.rewind.lastChild);
@@ -275,8 +315,11 @@ Game.prototype.setGame = function() {
     this.canvas.width = dimX;
     this.canvas.height = dimY;
 
-    this.partition = dimY/this.boardDimmensions;
-    this.offsetPartition = (dimX-dimY)/2;
+    this.offsetPartitionX = 0.338*dimX;
+    this.offsetPartitionY = 0.26*dimY;
+
+    this.partitionX = (dimX-this.offsetPartitionX*2)/this.boardDimmensions;
+    this.partitionY = 24/25*this.partitionX; //Problems with the aspect ratio of canvas, it's atrociously hard to match aspect ratio of flex canvas with the image ratio.
 
     this.board = [];
     for(let i = 0; i < this.boardDimmensions; i++) {
@@ -296,35 +339,34 @@ Game.prototype.setGame = function() {
 
     document.querySelector(".gameboard").addEventListener("mousemove", function(event) {
         if(this.highlight.state === "action") {
-            let x = Math.floor((event.clientX - this.canvas.offsetLeft - this.offsetPartition)/this.partition);
-            let y = Math.floor((event.clientY - this.canvas.offsetTop)/this.partition);
+            let x = Math.floor((event.clientX - this.canvas.offsetLeft - this.offsetPartitionX)/this.partitionX);
+            let y = Math.floor((event.clientY - this.canvas.offsetTop - this.offsetPartitionY)/this.partitionY);
 
             this.highlight.affected = this.board[x][y];
         }
     }.bind(this));
 
     this.canvas.addEventListener("click", function(event) {
-
-        let x = Math.floor((event.clientX - this.canvas.offsetLeft - this.offsetPartition)/this.partition);
-        let y = Math.floor((event.clientY - this.canvas.offsetTop)/this.partition);
+        let x = Math.floor((event.clientX - this.canvas.offsetLeft - this.offsetPartitionX)/this.partitionX);
+        let y = Math.floor((event.clientY - this.canvas.offsetTop - this.offsetPartitionY)/this.partitionY);
 
         if(!this.highlight.entity) {
             this.highlight.entity = this.board[x][y];
-            if(Wasteland.prototype.isPrototypeOf(this.highlight.entity.type)) {
+            if(Wasteland.prototype.isPrototypeOf(this.highlight.entity.type) && !this.highlight.entity.type.ruin) {
                 tools.style.display = "flex";
 
                 this.highlight.state = "highlight";
 
-                tools.style.left = this.partition*x+this.partition + this.offsetPartition - dimX/2 + "px";
-                tools.style.top = this.partition*y+this.partition/2 - dimY/2 + "px";
+                tools.style.left = this.partitionX*(x+1) + this.offsetPartitionX - dimX/2 + "px";
+                tools.style.top = this.partitionY*(y+1/2) + this.offsetPartitionY - dimY/2 + "px";
             } else if(Mage.prototype.isPrototypeOf(this.highlight.entity.type) && this.highlight.entity.team === this.turns%2) {
                 if(this.highlight.entity.type.mana !== 0) {
                     spells.style.display = "flex";
 
                     this.highlight.state = "highlight";
 
-                    spells.style.left = this.partition*x+this.partition + this.offsetPartition - dimX/2 + "px";
-                    spells.style.top = this.partition*y+this.partition/2 - dimY/2 + "px";
+                    spells.style.left = this.partitionX*(x+1) + this.offsetPartitionX - dimX/2 + "px";
+                    spells.style.top = this.partitionY*(y+1/2) + this.offsetPartitionY - dimY/2 + "px";
                 } else {
                     this.highlight.state = "action";
                 }
@@ -333,17 +375,12 @@ Game.prototype.setGame = function() {
             }
         } else {
             if(this.highlight.state === "action") {
+                let affectedMorpion = this.board[x][y];
                 if(this.highlight.entity.type.constructor.name !== "Wasteland") {
-                    let affectedMorpion = this.board[x][y];
-                    if(!this.highlight.entity.pos.isEqual(new Vector(x, y)) && affectedMorpion.team !== this.highlight.entity.team && !this.highlight.spell) {
+                    if(affectedMorpion.type.id && !this.highlight.entity.pos.isEqual(new Vector(x, y)) && affectedMorpion.team !== this.highlight.entity.team && !this.highlight.spell) {
                         switch(this.highlight.entity.type.constructor.name) {
                             case "Warrior" : {
-                                if(Math.random()*100 < this.highlight.entity.type.bonus)
-                                    affectedMorpion.type.health -= 2*this.highlight.entity.type.attack;
-                                else
-                                    affectedMorpion.type.health -= this.highlight.entity.type.attack;
-                                this.highlight.entity.type.bonus += 5;
-                                this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "attack");
+                                this.actionAttack(this.highlight.entity, new Vector(x, y), affectedMorpion);
                                 break;
                             }
                             case "Archer" : {
@@ -359,39 +396,52 @@ Game.prototype.setGame = function() {
                         }
                         this.turns++;
                         this.appendCheckpoint();
-                        document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
-                        document.querySelector(".action").style.color = this.teams[this.turns%2].color;
-                    }
-                    if(this.highlight.entity.type.constructor.name === "Mage" && this.highlight.spell) {
+                        this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+                        this.actionColor = this.teams[this.turns%2].color;
+                    } else if(!this.highlight.entity.pos.isEqual(new Vector(x, y)) && this.highlight.entity.type.constructor.name === "Mage" && this.highlight.spell) {
                         switch (this.highlight.spell) {
                             case "fireball" : {
-                                affectedMorpion.type.health -= 4;
-                                this.highlight.entity.type.mana -= 2;
-                                this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "fireball");
+                                if(affectedMorpion.type.id && affectedMorpion.team !== this.highlight.entity.team) {
+                                    affectedMorpion.type.health -= 4;
+                                    this.highlight.entity.type.mana -= 2;
+                                    this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "fireball");
+                                    this.turns++;
+                                    this.appendCheckpoint();
+                                    this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+                                    this.actionColor = this.teams[this.turns%2].color;
+                                }
                                 break;
                             }
                             case "heal" : {
-                                affectedMorpion.type.health += 3;
-                                this.highlight.entity.type.mana -= 1;
-                                this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "heal");
+                                if(affectedMorpion.type.id && affectedMorpion.team === this.highlight.entity.team) {
+                                    affectedMorpion.type.health += 3;
+                                    this.highlight.entity.type.mana -= 1;
+                                    this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "heal");
+                                    this.turns++;
+                                    this.appendCheckpoint();
+                                    this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+                                    this.actionColor = this.teams[this.turns%2].color;
+                                }
                                 break;
                             }
                             case "armageddon" : {
-                                if(!Wasteland.prototype.isPrototypeOf(affectedMorpion.type)) {
+                                if(affectedMorpion.team !== this.highlight.entity.team) {
                                     affectedMorpion.type = Types["wasteland"]();
+                                    affectedMorpion.state = null;
+                                    affectedMorpion.team = null;
+                                    if(Wasteland.prototype.isPrototypeOf(affectedMorpion.type)) {
+                                        affectedMorpion.type.ruin = true;
+                                    }
                                     this.highlight.entity.type.mana -= 5;
-                                } else {
-                                    affectedMorpion.type.ruin = true;
-                                    this.highlight.entity.type.mana -= 5;
+                                    this.actionArmageddon(this.highlight.entity, new Vector(x, y));
+                                    this.turns++;
+                                    this.appendCheckpoint();
+                                    this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+                                    this.actionColor = this.teams[this.turns%2].color;
                                 }
-                                this.actionArmageddon(this.highlight.entity, new Vector(x, y));
                                 break;
                             }
                         }
-                        this.turns++;
-                        this.appendCheckpoint();
-                        document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
-                        document.querySelector(".action").style.color = this.teams[this.turns%2].color;
                     }
                     if(affectedMorpion.type.health <= 0) {
                         this.board[x][y].type = new Wasteland();
@@ -421,8 +471,8 @@ Game.prototype.setGame = function() {
             this.teams[this.turns%2].morpions[upperCase(event.target.attributes["class-specific"].value)]--;
             this.turns++;
             this.appendCheckpoint();
-            document.querySelector(".action").textContent = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
-            document.querySelector(".action").style.color = this.teams[this.turns%2].color;
+            this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
+            this.actionColor = this.teams[this.turns%2].color;
         }
         event.stopPropagation();
     }.bind(this));
@@ -438,13 +488,28 @@ Game.prototype.setGame = function() {
 
 };
 
+function winCondition(request) {
+    let data = JSON.parse(request.responseText);
+    if(data.victory) {
+        let popup = document.querySelector(".popup");
+        popup.className += " toggle";
+        let popup_text = document.querySelector(".popup_paragraph");
+        popup_text.textContent = this.teams[(data.team+1)%2].name;
+        let content = document.querySelector("body");
+        content.className += " fade";
+        document.querySelector(".popup_action").addEventListener("click", function() {
+            window.location.href = "home.php";
+        });
+    }
+}
+
 Game.prototype.putMorpion = function(morpion) {
     let request = new XMLHttpRequest();
     request.open("POST", "../app/ActionPlacement.php");
     request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener("load", function(req, res) {
-        console.log(request.responseText);
-    });
+    request.addEventListener("load", function() {
+        this.winCondition();
+    }.bind(this));
     request.send(JSON.stringify(morpion));
 };
 
@@ -452,9 +517,31 @@ Game.prototype.actionArmageddon = function(morpion, cell) {
     let request = new XMLHttpRequest();
     request.open("POST", "../app/ActionArmageddon.php");
     request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener("load", function(req, res) {
-        console.log(request.responseText);
-    });
+    request.addEventListener("load", function() {
+        this.winCondition();
+    }.bind(this));
+    request.send(JSON.stringify({
+        "morpion" : morpion,
+        "cell" : cell
+    }))
+};
+
+Game.prototype.actionAttack = function(morpion, cell, affectedMorpion) {
+    let request = new XMLHttpRequest();
+    request.open("POST", "../app/ActionAttack.php");
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function() {
+        let data = JSON.parse(request.responseText);
+        if(data.bonus === 1) {
+            affectedMorpion.type.health -= 2*morpion.type.attack;
+        } else if(data.bonus === 0) {
+            affectedMorpion.type.health -= morpion.type.attack;
+        }
+        if(affectedMorpion.type.health <= 0) {
+            this.board[cell.x][cell.y].type = new Wasteland();
+        }
+        this.winCondition();
+    }.bind(this));
     request.send(JSON.stringify({
         "morpion" : morpion,
         "cell" : cell
@@ -465,19 +552,8 @@ Game.prototype.actionMiscellaneous = function(morpion, cell, type) {
     let request = new XMLHttpRequest();
     request.open("POST", "../app/ActionMiscellaneous.php");
     request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener("load", function(req, res) {
-        let data = JSON.parse(request.responseText);
-        if(data.victory) {
-            let popup = document.querySelector(".popup");
-            popup.className += " toggle";
-            let popup_text = document.querySelector(".popup_paragraph");
-            popup_text.textContent = this.teams[data.team].name;
-            let content = document.querySelector("body");
-            content.className += " fade";
-            document.querySelector(".popup_action").addEventListener("click", function() {
-                window.location.href = "home.php";
-            });
-        }
+    request.addEventListener("load", function() {
+        this.winCondition();
     }.bind(this));
     request.send(JSON.stringify({
         "morpion" : morpion,
@@ -486,53 +562,91 @@ Game.prototype.actionMiscellaneous = function(morpion, cell, type) {
     }));
 };
 
+Game.prototype.winCondition = function() {
+    let request = new XMLHttpRequest();
+    request.open("GET", "../app/WinCondition.php");
+    request.addEventListener("load", winCondition.bind(this, request));
+    request.send();
+};
+
 Game.prototype.drawMenu = function() {
     this.ctx.save();
-    this.ctx.fillStyle = "darkslategrey";
-    this.ctx.fillRect(0, 0, this.offsetPartition, dimY);
-    this.ctx.fillRect(this.offsetPartition+this.boardDimmensions*this.partition, 0, this.offsetPartition, dimY);
     this.ctx.fillStyle = "white";
     this.ctx.font = "14px Roboto Slab";
     this.ctx.textAlign = "center";
 
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+    this.ctx.beginPath();
+    this.ctx.moveTo(dimX/2-100, 0);
+    this.ctx.quadraticCurveTo(dimX/2-95, 25, dimX/2-70, 25);
+    this.ctx.lineTo(dimX/2+70, 25);
+    this.ctx.quadraticCurveTo(dimX/2+95, 25, dimX/2+100, 0);
+    this.ctx.closePath();
+    this.ctx.fill();
+
+    this.ctx.textAlign = "center";
+    this.ctx.fillStyle = "white" || this.actionColor;
+    this.ctx.fillText(this.actionMessage, dimX/2, 17, 200);
+
     if(this.highlight.entity && !Wasteland.prototype.isPrototypeOf(this.highlight.entity.type)) {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, 50);
+        this.ctx.quadraticCurveTo(30, 50+5, 30, 50+15);
+        this.ctx.lineTo(30, dimY-50-15);
+        this.ctx.quadraticCurveTo(30, dimY-50-5, 0, dimY-50);
+        this.ctx.closePath();
+        this.ctx.fill();
+
+        this.ctx.fillStyle = "white";
         let objects = Object.keys(this.highlight.entity.type);
-        let partition = dimY/(objects.length);
+        let partition = (dimY-100)/(objects.length);
         for(let i = 0; i < objects.length-1; i++) {
-            this.ctx.drawImage(properties[objects[i+1]], this.offsetPartition/4, (i+1)*partition-15, 30, 30);
-            this.ctx.fillText(this.highlight.entity.type[objects[i+1]], this.offsetPartition*3/4, (i+1)*partition+7);
+            this.ctx.drawImage(properties[objects[i+1]], 30/8, 50+(i+1)*partition-15, 3*30/4, 3*30/4);
+            this.ctx.fillText(this.highlight.entity.type[objects[i+1]], 30/2, 50+30/2+(i+1)*partition+10); //7
         }
     }
 
-    for(let i = 0; i < 2; i++) {
-        this.ctx.fillText(this.teams[i].name, this.offsetPartition*3/2+this.partition*this.boardDimmensions, 50+180*i);
-        let g = 0;
-        for(let type in spirits) {
-            this.ctx.drawImage(spirits[type][i], this.offsetPartition*5/4+this.partition*this.boardDimmensions, 50+180*i+5+35*(g+1)-15, 30, 30);
-            this.ctx.fillText("x" + this.teams[i].morpions[lowerCase(type)].length, this.offsetPartition*3/2+20+this.partition*this.boardDimmensions, 50+180*i+5+35*(g+1)+7);
-            g++;
-        }
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+    this.ctx.beginPath();
+    this.ctx.moveTo(dimX, 50);
+    this.ctx.quadraticCurveTo(dimX-30, 50+5, dimX-30, 50+15);
+    this.ctx.lineTo(dimX-30, dimY-50-15);
+    this.ctx.quadraticCurveTo(dimX-30, dimY-50-5, dimX, dimY-50);
+    this.ctx.closePath();
+    this.ctx.fill();
+
+    this.ctx.fillStyle = "white";
+    let partition = (dimY-100)/4;
+    for(let i = 0; i < 3; i++) {
+        this.ctx.drawImage(spirits[Object.keys(spirits)[i]][this.turns%2], dimX-7*30/8, 50+(i+1)*partition-15, 3*30/4, 3*30/4);
+        this.ctx.fillText("x" + this.teams[this.turns%2].morpions[lowerCase(Object.keys(spirits)[i])].length, dimX-30/2, 50+30/2+(i+1)*partition+10); //7
     }
     this.ctx.restore();
 };
 
 Game.prototype.drawGame = function() {
     this.ctx.clearRect(0, 0, dimX, dimY);
-    this.ctx.save();
+    // this.setDPI();
+    this.ctx.drawImage(this.resources.board, 0, 0, dimX, dimY);
 
     this.drawMenu();
 
     for(let i = 0; i < this.boardDimmensions; i++) {
         for(let g = 0; g < this.boardDimmensions; g++) {
             let morpion = this.board[i][g];
-            this.ctx.fillStyle = "#D2D7D3";
-            this.ctx.fillRect(this.offsetPartition+i*this.partition, g*this.partition, this.partition, this.partition);
 
+            if(morpion.type.ruin)
+                this.ctx.drawImage(this.resources.lava, this.offsetPartitionX+(i+0.02)*this.partitionX, this.offsetPartitionY+(g+0.08)*this.partitionY, this.partitionX*4/5, this.partitionY*4/5);
+            else
+                this.ctx.drawImage(this.resources.wasteland, this.offsetPartitionX+(i+0.02)*this.partitionX, this.offsetPartitionY+(g+0.08)*this.partitionY, this.partitionX*4/5, this.partitionY*4/5);
+            
             if(!Wasteland.prototype.isPrototypeOf(morpion.type)) {
                 this.ctx.fillStyle = this.teams[morpion.team].color;
-                this.ctx.drawImage(spirits[morpion.type.constructor.name][morpion.team], this.offsetPartition+(i+0.25)*this.partition, (g+0.25)*this.partition, this.partition/2, this.partition/2);
-                this.ctx.font = "bold 16px Roboto Slab";
-                this.ctx.fillText(morpion.type.health, this.offsetPartition+(i+0.1)*this.partition, (g+0.9)*this.partition);
+                this.ctx.drawImage(spirits[morpion.type.constructor.name][morpion.team], this.offsetPartitionX+(i+0.18)*this.partitionX, this.offsetPartitionY+g*this.partitionY, this.partitionX/2, this.partitionY/2);
+                this.ctx.font = "bold 12px Roboto Slab";
+                this.ctx.fillStyle = "white";
+                this.ctx.fillText(morpion.type.health, this.offsetPartitionX+(i+0.15)*this.partitionX, this.offsetPartitionY+(g+0.7)*this.partitionY);
                 this.ctx.fillStyle = "#D2D7D3";
             }
         }
@@ -546,7 +660,7 @@ Game.prototype.drawGame = function() {
             this.ctx.shadowBlur = "50";
             this.ctx.shadowColor = "rgb(245, 240, 142, 0.3)";
             this.ctx.fillStyle = "rgb(245, 240, 142, 0.3)";
-            this.ctx.fillRect(this.offsetPartition+pos.x*this.partition, pos.y*this.partition, this.partition, this.partition);
+            this.ctx.fillRect(this.offsetPartitionX+pos.x*this.partitionX, this.offsetPartitionY + pos.y*this.partitionY, this.partitionX, this.partitionY);
             this.ctx.restore();
         } else if(this.highlight.state === "action") {
             if(!Warrior.prototype.isPrototypeOf(entity.type)) {
@@ -554,44 +668,28 @@ Game.prototype.drawGame = function() {
                     for (let g = 0; g < this.boardDimmensions; g++) {
                         if(i !== pos.x || g !== pos.y) {
                             this.ctx.fillStyle = "rgba(255, 0, 0, 0.05)";
-                            this.ctx.fillRect(this.offsetPartition+i*this.partition, g*this.partition, this.partition, this.partition);
+                            this.ctx.fillRect(this.offsetPartitionX+i*this.partitionX, this.offsetPartitionY+g*this.partitionY, this.partitionX, this.partitionY);
                         }
                     }
                 }
                 if(this.highlight.affected && (this.highlight.affected.pos.x !== pos.x || this.highlight.affected.pos.y !== pos.y)) {
                     this.ctx.fillStyle = "rgba(255, 0, 0, 0.1)";
-                    this.ctx.fillRect(this.offsetPartition+this.highlight.affected.pos.x*this.partition, this.highlight.affected.pos.y*this.partition, this.partition, this.partition);
+                    this.ctx.fillRect(this.offsetPartitionX+this.highlight.affected.pos.x*this.partitionX, this.offsetPartitionY+this.highlight.affected.pos.y*this.partitionY, this.partitionX, this.partitionY);
                 }
             } else {
                 square.forEach(function(dimens) {
                     let newPosition = new Vector(pos.x+dimens[0], pos.y+dimens[1]);
                     if(newPosition.x >= 0 && newPosition.x < this.boardDimmensions && newPosition.y >= 0 && newPosition.y < this.boardDimmensions) {
                         this.ctx.fillStyle = "rgba(255, 0, 0, 0.05)";
-                        this.ctx.fillRect(this.offsetPartition+newPosition.x*this.partition, newPosition.y*this.partition, this.partition, this.partition);
+                        this.ctx.fillRect(this.offsetPartitionX+newPosition.x*this.partitionX, this.offsetPartitionY+newPosition.y*this.partitionY, this.partitionX, this.partitionY);
                     }
                     if(this.highlight.affected && this.highlight.affected.pos.x === newPosition.x && this.highlight.affected.pos.y === newPosition.y) {
                         this.ctx.fillStyle = "rgba(255, 0, 0, 0.1)";
-                        this.ctx.fillRect(this.offsetPartition+this.highlight.affected.pos.x*this.partition, this.highlight.affected.pos.y*this.partition, this.partition, this.partition);
+                        this.ctx.fillRect(this.offsetPartitionX+this.highlight.affected.pos.x*this.partitionX, this.offsetPartitionY+this.highlight.affected.pos.y*this.partitionY, this.partitionX, this.partitionY);
                     }
                 }.bind(this));
             }
         }
-    }
-
-    this.ctx.strokeStyle = "#D24D57";
-    this.ctx.lineWidth = 3;
-    for(let g = 0; g < this.boardDimmensions-1; g++) {
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.offsetPartition + (g+1)*this.partition, 0);
-        this.ctx.lineTo(this.offsetPartition + (g+1)*this.partition, dimY);
-        this.ctx.stroke();
-    }
-
-    for(let g = 0; g < this.boardDimmensions-1; g++) {
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.offsetPartition, (g+1)*this.partition);
-        this.ctx.lineTo(this.offsetPartition + this.boardDimmensions*this.partition, (g+1)*this.partition);
-        this.ctx.stroke();
     }
 
     requestAnimationFrame(this.drawGame.bind(this));

@@ -19,7 +19,7 @@
 
     <div class="custom_composition">
         <div class="close">X</div>
-        <p class="count">10 Morpions Left</p>
+        <p class="count">8 Morpions Left</p>
         <div class="interface">
             <div class="custom_class">
                 <img class="spirits predefined_spirit" src="./../public/assets/warrior.png" />

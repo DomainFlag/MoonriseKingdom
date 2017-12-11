@@ -12,7 +12,31 @@ document.querySelector(".submit").addEventListener("click", function(e) {
     if(!document.cookie.split("PHPSESSID=").pop()) {
         let request = new XMLHttpRequest();
         let inputs = document.getElementsByClassName("input");
-        if(customs_compositions[0].count === 0 && customs_compositions[0].count === 0) {
+        if(customs_compositions[0].count >= 0 &&  customs_compositions[0].count <= 4 && customs_compositions[0].count >= 0 && customs_compositions[0].count <= 4) {
+            customs_compositions.forEach(function(composition) {
+                for(let property in composition.morpions) {
+                    if(composition.morpions.hasOwnProperty(property)) {
+                        let morpionsType = composition.morpions[property];
+                        morpionsType.forEach(function(morpion) {
+                            let sum = 0;
+                            for(let stat in morpion) {
+                                if(morpion.hasOwnProperty(stat)) {
+                                    sum += morpion[stat];
+                                }
+                            }
+                            if(sum !== 10) {
+                                let op = types[property]();
+                                for(let defaultStat in op) {
+                                    if(op.hasOwnProperty(defaultStat)) {
+                                        morpion[defaultStat] = op[defaultStat];
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+            });
+
             request.open("POST", "../app/CustomGame.php");
             request.setRequestHeader("Content-Type", "application/json");
             request.addEventListener("load", function(req, res) {
@@ -74,22 +98,22 @@ function Archer() {
 }
 
 function Mage() {
-    this.health = 7;
+    this.health = 3;
     this.attack = 2;
-    this.mana = 3;
+    this.mana = 5;
 }
 
 let chose = 0;
 let customs_compositions = [
     {
-        "count" : 10,
+        "count" : 8,
         "morpions" : {
             "warrior" : [],
             "archer" : [],
             "mage" : []
         }
     }, {
-        "count" : 10,
+        "count" : 8,
         "morpions" : {
             "warrior" : [],
             "archer" : [],
@@ -158,7 +182,7 @@ function showCustomComposition(index) {
                         let effectType = document.createElement("div");
                         effectType.className = properties[g];
                         let effectValue = document.createElement("select");
-                        for(let i = 0; i <= 10; i++) {
+                        for(let i = 0; i <= 9; i++) {
                             let option = document.createElement("option");
                             option.value = i;
                             option.text = i;
