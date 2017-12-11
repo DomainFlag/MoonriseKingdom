@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ed93e53-c037-45b3-a356-46194538425b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/placement.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/assets/Board.png" afterPath="$PROJECT_DIR$/public/assets/board.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/db" afterPath="$PROJECT_DIR$/database/db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/archer.png" afterPath="$PROJECT_DIR$/public/assets/archer.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/archer_team_1.png" afterPath="$PROJECT_DIR$/public/assets/archer_team_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/archer_team_2.png" afterPath="$PROJECT_DIR$/public/assets/archer_team_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/mage.png" afterPath="$PROJECT_DIR$/public/assets/mage.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/mage_team_1.png" afterPath="$PROJECT_DIR$/public/assets/mage_team_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/mage_team_2.png" afterPath="$PROJECT_DIR$/public/assets/mage_team_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/warrior.png" afterPath="$PROJECT_DIR$/public/assets/warrior.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/warrior_team_1.png" afterPath="$PROJECT_DIR$/public/assets/warrior_team_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/warrior_team_2.png" afterPath="$PROJECT_DIR$/public/assets/warrior_team_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/2aefabf6-c39b-491d-9d61-0c02a00ad848.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/2aefabf6-c39b-491d-9d61-0c02a00ad848.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ActionArmageddon.php" afterPath="$PROJECT_DIR$/app/ActionArmageddon.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ActionMiscellaneous.php" afterPath="$PROJECT_DIR$/app/ActionMiscellaneous.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/RewindGame.php" afterPath="$PROJECT_DIR$/app/RewindGame.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/WinCondition.php" afterPath="$PROJECT_DIR$/app/WinCondition.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migration.sql" afterPath="$PROJECT_DIR$/database/migration.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/scripts/gameboard.js" afterPath="$PROJECT_DIR$/public/scripts/gameboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/scripts/home.js" afterPath="$PROJECT_DIR$/public/scripts/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home.php" afterPath="$PROJECT_DIR$/views/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/footer.php" afterPath="$PROJECT_DIR$/views/partials/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/header.php" afterPath="$PROJECT_DIR$/views/partials/header.php" />
-    </list>
+    <list default="true" id="6ed93e53-c037-45b3-a356-46194538425b" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -522,12 +496,12 @@
       <workItem from="1512674718691" duration="3955000" />
       <workItem from="1512687552972" duration="25032000" />
       <workItem from="1512776117340" duration="73113000" />
-      <workItem from="1512956488373" duration="97000" />
+      <workItem from="1512956488373" duration="226000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313141000" />
+    <option name="totallyTimeSpent" value="313270000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
