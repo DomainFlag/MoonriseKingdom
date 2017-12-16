@@ -269,7 +269,6 @@ Game.prototype.rewindGame = function(turn) {
     req.setRequestHeader("Content-Type", "application/json");
     req.addEventListener("load", function() {
         let data = JSON.parse(req.responseText);
-
         this.teams.forEach(function(team) {
             Object.keys(team.morpions).forEach(function(key) {
                 team.morpions[key].length = 0;
@@ -380,17 +379,17 @@ Game.prototype.setGame = function() {
                     if(affectedMorpion.type.id && !this.highlight.entity.pos.isEqual(new Vector(x, y)) && affectedMorpion.team !== this.highlight.entity.team && !this.highlight.spell) {
                         switch(this.highlight.entity.type.constructor.name) {
                             case "Warrior" : {
-                                this.actionAttack(this.highlight.entity, new Vector(x, y), affectedMorpion);
+                                this.actionAttack(this.highlight.entity, affectedMorpion);
                                 break;
                             }
                             case "Archer" : {
                                 affectedMorpion.type.health -= this.highlight.entity.type.attack;
-                                this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "throw");
+                                this.actionMiscellaneous(this.highlight.entity, affectedMorpion.type, "throw");
                                 break;
                             }
                             case "Mage" : {
                                 affectedMorpion.type.health -= this.highlight.entity.type.attack;
-                                this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "throw");
+                                this.actionMiscellaneous(this.highlight.entity, affectedMorpion.type, "throw");
                                 break;
                             }
                         }
@@ -398,13 +397,13 @@ Game.prototype.setGame = function() {
                         this.appendCheckpoint();
                         this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
                         this.actionColor = this.teams[this.turns%2].color;
-                    } else if(!this.highlight.entity.pos.isEqual(new Vector(x, y)) && this.highlight.entity.type.constructor.name === "Mage" && this.highlight.spell) {
+                    } else if(this.highlight.entity.type.constructor.name === "Mage" && this.highlight.spell) {
                         switch (this.highlight.spell) {
                             case "fireball" : {
-                                if(affectedMorpion.type.id && affectedMorpion.team !== this.highlight.entity.team) {
+                                if(!this.highlight.entity.pos.isEqual(new Vector(x, y)) && affectedMorpion.type.id && affectedMorpion.team !== this.highlight.entity.team) {
                                     affectedMorpion.type.health -= 4;
                                     this.highlight.entity.type.mana -= 2;
-                                    this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "fireball");
+                                    this.actionMiscellaneous(this.highlight.entity, affectedMorpion.type, "fireball");
                                     this.turns++;
                                     this.appendCheckpoint();
                                     this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
@@ -416,7 +415,7 @@ Game.prototype.setGame = function() {
                                 if(affectedMorpion.type.id && affectedMorpion.team === this.highlight.entity.team) {
                                     affectedMorpion.type.health += 3;
                                     this.highlight.entity.type.mana -= 1;
-                                    this.actionMiscellaneous(this.highlight.entity, new Vector(x, y), "heal");
+                                    this.actionMiscellaneous(this.highlight.entity, affectedMorpion.type, "heal");
                                     this.turns++;
                                     this.appendCheckpoint();
                                     this.actionMessage = "Turn " + this.turns + " | " + this.teams[this.turns%2].name;
@@ -425,7 +424,7 @@ Game.prototype.setGame = function() {
                                 break;
                             }
                             case "armageddon" : {
-                                if(affectedMorpion.team !== this.highlight.entity.team) {
+                                if(!this.highlight.entity.pos.isEqual(new Vector(x, y)) && affectedMorpion.team !== this.highlight.entity.team) {
                                     affectedMorpion.type = Types["wasteland"]();
                                     affectedMorpion.state = null;
                                     affectedMorpion.team = null;
@@ -526,7 +525,7 @@ Game.prototype.actionArmageddon = function(morpion, cell) {
     }))
 };
 
-Game.prototype.actionAttack = function(morpion, cell, affectedMorpion) {
+Game.prototype.actionAttack = function(morpion, affectedMorpion) {
     let request = new XMLHttpRequest();
     request.open("POST", "../app/ActionAttack.php");
     request.setRequestHeader("Content-Type", "application/json");
@@ -538,17 +537,17 @@ Game.prototype.actionAttack = function(morpion, cell, affectedMorpion) {
             affectedMorpion.type.health -= morpion.type.attack;
         }
         if(affectedMorpion.type.health <= 0) {
-            this.board[cell.x][cell.y].type = new Wasteland();
+            this.board[affectedMorpion.pos.x][affectedMorpion.pos.y].type = new Wasteland();
         }
         this.winCondition();
     }.bind(this));
     request.send(JSON.stringify({
         "morpion" : morpion,
-        "cell" : cell
+        "cell" : affectedMorpion.type
     }))
 };
 
-Game.prototype.actionMiscellaneous = function(morpion, cell, type) {
+Game.prototype.actionMiscellaneous = function(morpion, affectedMorpion, type) {
     let request = new XMLHttpRequest();
     request.open("POST", "../app/ActionMiscellaneous.php");
     request.setRequestHeader("Content-Type", "application/json");
@@ -557,7 +556,7 @@ Game.prototype.actionMiscellaneous = function(morpion, cell, type) {
     }.bind(this));
     request.send(JSON.stringify({
         "morpion" : morpion,
-        "cell" : cell,
+        "cell" : affectedMorpion,
         "type" : type
     }));
 };

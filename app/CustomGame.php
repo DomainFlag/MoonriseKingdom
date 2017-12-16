@@ -28,7 +28,9 @@ if(isset($data)) {
             foreach ($classMorpions as $morpion) {
                 if(!isset($morpion->mana))
                     $morpion->mana = 0;
-                if(!isset($morpion->bonus))
+                if(!isset($morpion->bonus) && $class === "warrior")
+                    $morpion->bonus = 10;
+                else if(!isset($morpion->bonus))
                     $morpion->bonus = 0;
                 $insertMorpionTeam_1 = "INSERT INTO morpion(health, damage, mana, bonus, class, idT) VALUES(". $morpion->health . ", ". $morpion->attack . ", ". $morpion->mana . ", ". $morpion->bonus . ", '". $class . "', ". $team_last_id . ");";
                 mysqli_query($connection, $insertMorpionTeam_1);
@@ -43,7 +45,9 @@ if(isset($data)) {
             foreach ($classMorpions as $morpion) {
                 if(!isset($morpion->mana))
                     $morpion->mana = 0;
-                if(!isset($morpion->bonus))
+                if(!isset($morpion->bonus) && $class === "warrior")
+                    $morpion->bonus = 10;
+                else if(!isset($morpion->bonus))
                     $morpion->bonus = 0;
                 $insertMorpionTeam_1 = "INSERT INTO morpion(health, damage, mana, bonus, class, idT) VALUES(". $morpion->health . ", ". $morpion->attack . ", ". $morpion->mana . ", ". $morpion->bonus . ", '". $class . "', ". $team_last_id . ");";
                 mysqli_query($connection, $insertMorpionTeam_1);

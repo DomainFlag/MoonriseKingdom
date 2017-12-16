@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Moonrise Kingdom</title>
-    <link href="../public/css/home.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/index.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
     <link rel="shortcut icon" href="../public/assets/favicon.png" type="image/x-icon">
     <link rel="icon" href="../public/assets/favicon.png" type="image/x-icon">
@@ -14,9 +14,9 @@
 
     <?php
     include('../app/FetchTeams.php');
+    include('../app/FetchStats.php');
     $connexion = connectDB();
     $data = getTeams($connexion);
-    disconnectDB($connexion);
     ?>
 
     <div class="custom_composition">
@@ -57,13 +57,34 @@
         </div>
         <div class="assign">
             <div class="dimensions">
-                <label for="dimension">Dimension:</label>
+                <input class="submit" type="button" value="Lets Start">
+                <label for="dimension"></label>
                 <select id="dimension">
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
             </div>
-            <input class="submit" type="button" value="Lets Start">
+            <div class="statistics">
+                <div class="statistics-row">
+                    <?php
+                    get_games_count($connexion);
+                    get_dead_morpions_count($connexion);
+                    ?>
+                </div>
+                <div class="statistics-row">
+                    <?php
+                    get_most_used_class($connexion);
+                    get_most_used_spell($connexion);
+                    ?>
+                </div>
+                <div class="statistics-row">
+                    <?php
+                    get_killer_warrior($connexion);
+                    get_killer_archer($connexion);
+                    get_killer_mage($connexion);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -95,7 +116,10 @@
     </div>
 
 </section>
-<?php include "partials/footer.php"; ?>
+<?php
+    include "partials/footer.php";
+    disconnectDB($connexion);
+?>
 <script src="../public/scripts/home.js"></script>
 </body>
 </html>

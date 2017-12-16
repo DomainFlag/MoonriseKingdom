@@ -11201,10 +11201,10 @@ numINSEE</ColNames>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2405" parent="221" name="FK_Action_idG">
+    <index id="2405" parent="221" name="FK_action_idG">
       <ColNames>idG</ColNames>
     </index>
-    <index id="2406" parent="221" name="FK_Action_idT">
+    <index id="2406" parent="221" name="FK_action_idT">
       <ColNames>idT</ColNames>
     </index>
     <key id="2407" parent="221" name="PRIMARY">
@@ -11212,13 +11212,13 @@ numINSEE</ColNames>
       <ColNames>idA</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2408" parent="221" name="FK_Action_idG">
+    <foreign-key id="2408" parent="221" name="FK_action_idG">
       <ColNames>idG</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>game</RefTableName>
       <RefColNames>idG</RefColNames>
     </foreign-key>
-    <foreign-key id="2409" parent="221" name="FK_Action_idT">
+    <foreign-key id="2409" parent="221" name="FK_action_idT">
       <ColNames>idT</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>team</RefTableName>
@@ -11255,21 +11255,21 @@ numINSEE</ColNames>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2416" parent="223" name="idM_Morpion">
+    <column id="2416" parent="223" name="idM_morpion">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="2417" parent="223" name="FK_Armageddon_idA">
+    <index id="2417" parent="223" name="FK_armageddon_idA">
       <ColNames>idA</ColNames>
     </index>
-    <index id="2418" parent="223" name="FK_Armageddon_idCo">
+    <index id="2418" parent="223" name="FK_armageddon_idCo">
       <ColNames>idCo</ColNames>
     </index>
-    <index id="2419" parent="223" name="FK_Armageddon_idM">
+    <index id="2419" parent="223" name="FK_armageddon_idM">
       <ColNames>idM</ColNames>
     </index>
-    <index id="2420" parent="223" name="FK_Armageddon_idM_Morpion">
-      <ColNames>idM_Morpion</ColNames>
+    <index id="2420" parent="223" name="FK_armageddon_idM_morpion">
+      <ColNames>idM_morpion</ColNames>
     </index>
     <key id="2421" parent="223" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -11277,26 +11277,26 @@ numINSEE</ColNames>
 idA</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2422" parent="223" name="FK_Armageddon_idA">
+    <foreign-key id="2422" parent="223" name="FK_armageddon_idA">
       <ColNames>idA</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>action</RefTableName>
       <RefColNames>idA</RefColNames>
     </foreign-key>
-    <foreign-key id="2423" parent="223" name="FK_Armageddon_idCo">
+    <foreign-key id="2423" parent="223" name="FK_armageddon_idCo">
       <ColNames>idCo</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>coordinates</RefTableName>
       <RefColNames>idCo</RefColNames>
     </foreign-key>
-    <foreign-key id="2424" parent="223" name="FK_Armageddon_idM">
+    <foreign-key id="2424" parent="223" name="FK_armageddon_idM">
       <ColNames>idM</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
     </foreign-key>
-    <foreign-key id="2425" parent="223" name="FK_Armageddon_idM_Morpion">
-      <ColNames>idM_Morpion</ColNames>
+    <foreign-key id="2425" parent="223" name="FK_armageddon_idM_morpion">
+      <ColNames>idM_morpion</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
@@ -11322,19 +11322,19 @@ idA</ColNames>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2430" parent="224" name="idM_Morpion">
+    <column id="2430" parent="224" name="idM_morpion">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2431" parent="224" name="FK_Attack_idA">
+    <index id="2431" parent="224" name="FK_attack_idA">
       <ColNames>idA</ColNames>
     </index>
-    <index id="2432" parent="224" name="FK_Attack_idM">
+    <index id="2432" parent="224" name="FK_attack_idM">
       <ColNames>idM</ColNames>
     </index>
-    <index id="2433" parent="224" name="FK_Attack_idM_Morpion">
-      <ColNames>idM_Morpion</ColNames>
+    <index id="2433" parent="224" name="FK_attack_idM_morpion">
+      <ColNames>idM_morpion</ColNames>
     </index>
     <key id="2434" parent="224" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -11342,20 +11342,20 @@ idA</ColNames>
 idA</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2435" parent="224" name="FK_Attack_idA">
+    <foreign-key id="2435" parent="224" name="FK_attack_idA">
       <ColNames>idA</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>action</RefTableName>
       <RefColNames>idA</RefColNames>
     </foreign-key>
-    <foreign-key id="2436" parent="224" name="FK_Attack_idM">
+    <foreign-key id="2436" parent="224" name="FK_attack_idM">
       <ColNames>idM</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
     </foreign-key>
-    <foreign-key id="2437" parent="224" name="FK_Attack_idM_Morpion">
-      <ColNames>idM_Morpion</ColNames>
+    <foreign-key id="2437" parent="224" name="FK_attack_idM_morpion">
+      <ColNames>idM_morpion</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
@@ -11376,10 +11376,10 @@ idA</ColNames>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2441" parent="225" name="FK_Belongs_idM">
+    <index id="2441" parent="225" name="FK_belongs_idM">
       <ColNames>idM</ColNames>
     </index>
-    <index id="2442" parent="225" name="FK_Belongs_idT">
+    <index id="2442" parent="225" name="FK_belongs_idT">
       <ColNames>idT</ColNames>
     </index>
     <key id="2443" parent="225" name="PRIMARY">
@@ -11387,13 +11387,13 @@ idA</ColNames>
       <ColNames>idB</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2444" parent="225" name="FK_Belongs_idT">
+    <foreign-key id="2444" parent="225" name="FK_belongs_idT">
       <ColNames>idT</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>compositions</RefTableName>
       <RefColNames>idT</RefColNames>
     </foreign-key>
-    <foreign-key id="2445" parent="225" name="FK_Belongs_idM">
+    <foreign-key id="2445" parent="225" name="FK_belongs_idM">
       <ColNames>idM</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>sample</RefTableName>
@@ -11450,24 +11450,24 @@ idA</ColNames>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2456" parent="227" name="FK_Coordinates_idM">
-      <ColNames>idM</ColNames>
-    </index>
-    <index id="2457" parent="227" name="FK_Coordinates_idG">
+    <index id="2456" parent="227" name="FK_coordinates_idG">
       <ColNames>idG</ColNames>
+    </index>
+    <index id="2457" parent="227" name="FK_coordinates_idM">
+      <ColNames>idM</ColNames>
     </index>
     <key id="2458" parent="227" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idCo</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2459" parent="227" name="FK_Coordinates_idM">
+    <foreign-key id="2459" parent="227" name="FK_coordinates_idM">
       <ColNames>idM</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
     </foreign-key>
-    <foreign-key id="2460" parent="227" name="FK_Coordinates_idG">
+    <foreign-key id="2460" parent="227" name="FK_coordinates_idG">
       <ColNames>idG</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>game</RefTableName>
@@ -11498,7 +11498,7 @@ idA</ColNames>
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="2466" parent="228" name="FK_Game_idT">
+    <index id="2466" parent="228" name="FK_game_idT">
       <ColNames>idT</ColNames>
     </index>
     <key id="2467" parent="228" name="PRIMARY">
@@ -11506,7 +11506,7 @@ idA</ColNames>
       <ColNames>idG</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2468" parent="228" name="FK_Game_idT">
+    <foreign-key id="2468" parent="228" name="FK_game_idT">
       <ColNames>idT</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>team</RefTableName>
@@ -11518,227 +11518,222 @@ idA</ColNames>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="2470" parent="229" name="points">
+    <column id="2470" parent="229" name="idA">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2471" parent="229" name="idA">
+    <column id="2471" parent="229" name="type">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="2472" parent="229" name="type">
-      <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2473" parent="229" name="idM">
+    <column id="2472" parent="229" name="idM">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="2473" parent="229" name="idM_morpion">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2474" parent="229" name="idM_Morpion">
-      <Position>6</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="2475" parent="229" name="FK_Miscellaneous_idA">
+    <index id="2474" parent="229" name="FK_miscellaneous_idA">
       <ColNames>idA</ColNames>
     </index>
-    <index id="2476" parent="229" name="FK_Miscellaneous_idM">
+    <index id="2475" parent="229" name="FK_miscellaneous_idM">
       <ColNames>idM</ColNames>
     </index>
-    <index id="2477" parent="229" name="FK_Miscellaneous_idM_Morpion">
-      <ColNames>idM_Morpion</ColNames>
+    <index id="2476" parent="229" name="FK_miscellaneous_idM_morpion">
+      <ColNames>idM_morpion</ColNames>
     </index>
-    <index id="2478" parent="229" name="FK_Miscellaneous_type">
+    <index id="2477" parent="229" name="FK_miscellaneous_type">
       <ColNames>type</ColNames>
     </index>
-    <key id="2479" parent="229" name="PRIMARY">
+    <key id="2478" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idMi
 idA</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2480" parent="229" name="FK_Miscellaneous_idA">
+    <foreign-key id="2479" parent="229" name="FK_miscellaneous_idA">
       <ColNames>idA</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>action</RefTableName>
       <RefColNames>idA</RefColNames>
     </foreign-key>
-    <foreign-key id="2481" parent="229" name="FK_Miscellaneous_type">
+    <foreign-key id="2480" parent="229" name="FK_miscellaneous_type">
       <ColNames>type</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>actiontypes</RefTableName>
       <RefColNames>type</RefColNames>
     </foreign-key>
-    <foreign-key id="2482" parent="229" name="FK_Miscellaneous_idM">
+    <foreign-key id="2481" parent="229" name="FK_miscellaneous_idM">
       <ColNames>idM</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
     </foreign-key>
-    <foreign-key id="2483" parent="229" name="FK_Miscellaneous_idM_Morpion">
-      <ColNames>idM_Morpion</ColNames>
+    <foreign-key id="2482" parent="229" name="FK_miscellaneous_idM_morpion">
+      <ColNames>idM_morpion</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>morpion</RefTableName>
       <RefColNames>idM</RefColNames>
     </foreign-key>
-    <column id="2484" parent="230" name="idM">
+    <column id="2483" parent="230" name="idM">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="2485" parent="230" name="health">
+    <column id="2484" parent="230" name="health">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2486" parent="230" name="damage">
+    <column id="2485" parent="230" name="damage">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2487" parent="230" name="mana">
+    <column id="2486" parent="230" name="mana">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2488" parent="230" name="bonus">
+    <column id="2487" parent="230" name="bonus">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="2489" parent="230" name="class">
+    <column id="2488" parent="230" name="class">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2490" parent="230" name="idT">
+    <column id="2489" parent="230" name="idT">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2491" parent="230" name="FK_Morpion_idT">
+    <index id="2490" parent="230" name="FK_morpion_idT">
       <ColNames>idT</ColNames>
     </index>
-    <key id="2492" parent="230" name="PRIMARY">
+    <key id="2491" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idM</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2493" parent="230" name="FK_Morpion_idT">
+    <foreign-key id="2492" parent="230" name="FK_morpion_idT">
       <ColNames>idT</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>team</RefTableName>
       <RefColNames>idT</RefColNames>
     </foreign-key>
-    <column id="2494" parent="231" name="idPl">
+    <column id="2493" parent="231" name="idPl">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="2495" parent="231" name="idA">
+    <column id="2494" parent="231" name="idA">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2496" parent="231" name="idCo">
+    <column id="2495" parent="231" name="idCo">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2497" parent="231" name="FK_Placement_idA">
+    <index id="2496" parent="231" name="FK_placement_idA">
       <ColNames>idA</ColNames>
     </index>
-    <index id="2498" parent="231" name="FK_Placement_idCo">
+    <index id="2497" parent="231" name="FK_placement_idCo">
       <ColNames>idCo</ColNames>
     </index>
-    <key id="2499" parent="231" name="PRIMARY">
+    <key id="2498" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idPl
 idA</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2500" parent="231" name="FK_Placement_idA">
+    <foreign-key id="2499" parent="231" name="FK_placement_idA">
       <ColNames>idA</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>action</RefTableName>
       <RefColNames>idA</RefColNames>
     </foreign-key>
-    <foreign-key id="2501" parent="231" name="FK_Placement_idCo">
+    <foreign-key id="2500" parent="231" name="FK_placement_idCo">
       <ColNames>idCo</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>coordinates</RefTableName>
       <RefColNames>idCo</RefColNames>
     </foreign-key>
-    <column id="2502" parent="232" name="idM">
+    <column id="2501" parent="232" name="idM">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="2503" parent="232" name="health">
+    <column id="2502" parent="232" name="health">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2504" parent="232" name="damage">
+    <column id="2503" parent="232" name="damage">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2505" parent="232" name="mana">
+    <column id="2504" parent="232" name="mana">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2506" parent="232" name="bonus">
+    <column id="2505" parent="232" name="bonus">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="2507" parent="232" name="class">
+    <column id="2506" parent="232" name="class">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="2508" parent="232" name="PRIMARY">
+    <key id="2507" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idM</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="2509" parent="233" name="idT">
+    <column id="2508" parent="233" name="idT">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="2510" parent="233" name="name">
+    <column id="2509" parent="233" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2511" parent="233" name="color">
+    <column id="2510" parent="233" name="color">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="2512" parent="233" name="idG">
+    <column id="2511" parent="233" name="idG">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="2513" parent="233" name="FK_Team_idG">
+    <index id="2512" parent="233" name="FK_team_idG">
       <ColNames>idG</ColNames>
     </index>
-    <key id="2514" parent="233" name="PRIMARY">
+    <key id="2513" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idT</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="2515" parent="233" name="FK_Team_idG">
+    <foreign-key id="2514" parent="233" name="FK_team_idG">
       <ColNames>idG</ColNames>
       <RefSchemaName>moonrisekingdom</RefSchemaName>
       <RefTableName>game</RefTableName>

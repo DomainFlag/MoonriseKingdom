@@ -82,7 +82,7 @@ if(isset($data)) {
             if($attack["bonus"] === "1")
                 $damage *= 2;
 
-            $req_update_morpion_1 = "UPDATE morpion SET health = health + ".$damage." WHERE idM = " . $attack["idM_Morpion"] . ";";
+            $req_update_morpion_1 = "UPDATE morpion SET health = health + ".$damage." WHERE idM = " . $attack["idM_morpion"] . ";";
             mysqli_query($connection, $req_update_morpion_1);
 
             $req_delete_attacks = "DELETE FROM attack WHERE idAt = ". $attack["idAt"] .";";
@@ -94,7 +94,7 @@ if(isset($data)) {
                 case "fireball" : {
                     $req_update_morpion_0 = "UPDATE morpion SET mana = mana+2 WHERE idM = " . $miscellaneous["idM"] . ";";
                     mysqli_query($connection, $req_update_morpion_0);
-                    $req_update_morpion_1 = "UPDATE morpion SET health = health+4 WHERE idM = " . $miscellaneous["idM_Morpion"] . ";";
+                    $req_update_morpion_1 = "UPDATE morpion SET health = health+4 WHERE idM = " . $miscellaneous["idM_morpion"] . ";";
                     mysqli_query($connection, $req_update_morpion_1);
                     break;
                 }
@@ -102,7 +102,7 @@ if(isset($data)) {
                     $req_update_morpion_0 = "UPDATE morpion SET mana = mana+1 WHERE idM = " . $miscellaneous["idM"] . ";";
                     mysqli_query($connection, $req_update_morpion_0);
 
-                    $req_update_morpion_1 = "UPDATE morpion SET health = health-3 WHERE idM = " . $miscellaneous["idM_Morpion"] . ";";
+                    $req_update_morpion_1 = "UPDATE morpion SET health = health-3 WHERE idM = " . $miscellaneous["idM_morpion"] . ";";
                     mysqli_query($connection, $req_update_morpion_1);
                     break;
                 }
@@ -110,7 +110,7 @@ if(isset($data)) {
                     $req_find_attack_initiator = "SELECT damage FROM morpion WHERE idM = ". $miscellaneous["idM"] .";";
                     $damage = (int)mysqli_fetch_assoc(mysqli_query($connection, $req_find_attack_initiator))["damage"];
 
-                    $req_update_morpion_1 = "UPDATE morpion SET health = health+".$damage." WHERE idM = " . $miscellaneous["idM_Morpion"] . ";";
+                    $req_update_morpion_1 = "UPDATE morpion SET health = health+".$damage." WHERE idM = " . $miscellaneous["idM_morpion"] . ";";
                     mysqli_query($connection, $req_update_morpion_1);
                     break;
                 }

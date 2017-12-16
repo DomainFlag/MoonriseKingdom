@@ -24,7 +24,7 @@ if(isset($data)) {
     mysqli_query($connection, $req_insert_action);
     $action_id = mysqli_insert_id($connection);
 
-    $req_affected_morpion = "SELECT idM FROM coordinates WHERE idG = ".$game_id." AND cordX = ".$data->cell->x." AND cordY = ".$data->cell->y.";";
+    $req_affected_morpion = "SELECT idM FROM coordinates WHERE idG = ".$game_id." AND idM = ".$data->cell->id.";";
     $result_affected_morpion = mysqli_query($connection, $req_affected_morpion);
     $affected_morpion = mysqli_fetch_assoc($result_affected_morpion)["idM"];
 
@@ -46,5 +46,6 @@ if(isset($data)) {
 
     $req_update_morpion = "UPDATE morpion SET health = health-".$attack." WHERE idM = ".$affected_morpion.";";
     mysqli_query($connection, $req_update_morpion);
+
     echo json_encode(array("bonus" => $bonus));
 }

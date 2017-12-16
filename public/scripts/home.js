@@ -129,11 +129,11 @@ let customs = document.getElementsByClassName("team_creator");
 for(let i = 0; i < 2; i++) {
     customs[i].addEventListener("click", function(e) {
         chose = i;
-        document.querySelector(".custom_composition").style.visibility = "visible";
+        document.querySelector(".custom_composition").style.display = "flex";
         showCustomComposition(chose);
         e.stopPropagation();
         document.querySelector("section").addEventListener("click", function(e) {
-            document.querySelector(".custom_composition").style.visibility = "hidden";
+            document.querySelector(".custom_composition").style.visibility = "none";
             e.stopPropagation();
             document.querySelector("section").removeEventListener("click", this);
         });
@@ -222,7 +222,7 @@ document.querySelector(".custom_composition").addEventListener("click", function
 });
 
 document.querySelector(".close").addEventListener("click", function(e) {
-    document.querySelector(".custom_composition").style.visibility = "hidden";
+    document.querySelector(".custom_composition").style.display = "none";
 });
 
 let types = {"warrior" : function() {
@@ -317,3 +317,18 @@ document.querySelector("#dimension").addEventListener("change", function(e) {
     selectedDimension = e.target.options[e.target.selectedIndex].value;
 });
 
+/* Stat-Hover implementation */
+let sprites = document.getElementsByClassName("sprites");
+let statHovers = document.getElementsByClassName("stat-hover");
+let offset = 2;
+
+for(let g = 0; g < sprites.length-2; g++) {
+    sprites[g+offset].addEventListener("mouseenter", function(e) {
+        statHovers[g].style.display = "flex";
+        e.stopPropagation();
+    });
+    sprites[g+offset].addEventListener("mouseleave", function(e) {
+        statHovers[g].style.display = "none";
+        e.stopPropagation();
+    });
+}

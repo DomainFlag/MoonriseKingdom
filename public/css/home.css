@@ -1,287 +1,230 @@
 * {
     margin : 0;
-    padding : 0;
+    padding: 0;
 }
 
 html, body {
-    height : 100%;
+    width: 100%;
+    height: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+/* Section */
 
 section {
-    z-index: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex: 1;
-}
-
-.teams {
-    width: 100%;
+    width: 60%;
     display: flex;
     flex: 1;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-}
-
-.team {
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-
-.team_header {
-    color: forestgreen;
-    margin: 10px 0;
-    font-size: 36px;
-    font-family: "Roboto Slab", Serif;
-    font-weight: 300;
-}
-
-.input {
-    margin: 5px 0;
-    padding-left: 5px;
-    display: inline-flex;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    height: 45px;
-    width: 260px;
-    font-size: 16px;
-    text-align: center;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-.input:focus {
-    outline: 0;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-.input:-webkit-autofill {
-    color: #2a2a2a !important;
-}
-
-.colorpicker {
-    margin: 30px 0;
+.gameboard {
     width: 100%;
     display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 }
 
-.color {
-    width: 25px;
-    height: 25px;
-    margin: 0 5px;
+canvas {
+    position: absolute;
+    z-index: 1;
 }
 
-.compositions {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-}
-
-.choosing {
-    width: 100%;
-    display: flex;
+.tools {
+    position: relative;
+    z-index: 2;
+    display: none;
     justify-content: center;
     align-items: center;
-}
-
-#selected_team {
-    font-size: 12px;
-    font-family: "Roboto", SansSerif;
-    color: darkslategrey;
-}
-
-#crystal {
-    margin-right: 10px;
-    width: 20px;
-    height: 12px;
-    transform: skew(-35deg);
-}
-
-.selection {
-    margin: 40px 0;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: row;
-}
-
-.composition {
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
     flex-direction: column;
 }
 
 .class {
-    margin: 10px 0;
+    position: relative;
+    height: 42px;
+    width: 42px;
+    margin: 3px 0;
+    border-radius: 21px;
+}
+
+[class-specific = "warrior"] {
+    background: url("../assets/warrior.png") no-repeat center;
+    background-size: 70%;
+}
+
+[class-specific = "warrior"]:hover {
+    background-color: darkred;
+}
+
+[class-specific = "archer"] {
+    left: 20px;
+    background: url("../assets/archer.png") no-repeat center;
+    background-size: 80%;
+}
+
+[class-specific = "archer"]:hover {
+    background-color: forestgreen;
+}
+
+[class-specific = "mage"] {
+    background: url("../assets/mage.png") no-repeat center;
+    background-size: 80%;
+}
+
+[class-specific = "mage"]:hover {
+    background-color: mediumslateblue;
+}
+
+[class-specific = "fireball"] {
+    background: url("../assets/fireball.png") no-repeat center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+[class-specific = "fireball"]:hover {
+    opacity: 1.0;
+}
+
+[class-specific = "heal"] {
+    left: 20px;
+    background: url("../assets/heal.png") no-repeat center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+[class-specific = "heal"]:hover {
+    opacity: 1.0;
+}
+
+[class-specific = "armageddon"] {
+    background: url("../assets/armageddon.png") no-repeat center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+[class-specific = "armageddon"]:hover {
+    opacity: 1.0;
+}
+
+.rewind {
+    height: 20px;
+    width: 100%;
     display: flex;
+    border-radius: 10px;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     flex-direction: row;
+    overflow-x: hidden;
 }
 
-img {
-    margin: 0 5px;
-    width: 30px;
-    height: 30px;
-}
-
-.number {
-    display: flex;
-    align-items: center;
-    margin: 0 5px;
-    font-size: 14px;
-    font-family: "Roboto Slab";
-}
-
-.submit {
-    margin: 5px 0;
-    border: none;
-    border-radius: 3px;
-    background-color: crimson;
-    padding: 10px 16px;
-    font-size: 16px;
-    color: white;
-    font-family: "Roboto Slab", SaSerif;
-}
-
-.assign {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-}
-
-.team_creator {
-    border: none;
+.checkpoint_interval {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-weight: 300;
-    font-size: 13px;
-    font-family: "Roboto Slab", Serif;
-    height: 40px;
-    width: 120px;
+    flex: 1;
+    height: 100%;
+}
+
+.checkpoint {
+    position: absolute;
+    width: 14px;
+    height: 28px;
     border-radius: 4px;
-    background-color: chocolate;
+    opacity: 0.9;
 }
 
-.team_creator:active {
-    background-color: saddlebrown;
+.checkpoint:hover {
+    opacity: 1;
 }
 
-.custom_composition {
-    visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.message {
+    transform: translate(0, -150%);
+    position: absolute;
+    font-size: 13px;
+    font-family: "Roboto", SansSerif;
+    font-weight: 300;
+}
+
+.action {
+    position: absolute;
     z-index: 1;
+    font-size: 16px;
+    font-family: "Roboto Slab", SansSerif;
+    font-weight: 800;
+}
+
+
+/* Popup Implementation */
+.popup {
+    z-index: 2;
     position: absolute;
-    background-color: whitesmoke;
-    width: 350px;
-    height: 300px;
+    visibility: hidden;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    border-radius: 6px;
+    transform: rotateY(-60deg);
+    transform-style: preserve-3d;
 }
 
-.close {
-    padding: 3px 6px;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    transform: translate(-150%, 50%);
-    background-color: crimson;
-    color: white;
-    font-weight: 500;
+.toggle {
+    visibility: visible;
+    transition: all 0.5s ease-in-out;
+    transform: rotateY(0deg);
+    animation-fill-mode: forwards;
+}
+
+.fade {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.popup_header {
+    margin: 10px 0;
     font-family: "Roboto Slab", Serif;
-}
-
-.close:hover {
-    background-color: chocolate;
+    color: coral;
     font-weight: 900;
 }
 
-.count {
-    padding: 20px;
-    color: darkslategrey;
-    font-weight: 300;
-    font-size: 15px;
-    font-family: "Roboto Slab", Serif;
+.popup_paragraph {
+    font-family: "Roboto", SansSerif;
+    margin : 10px 30px;
 }
 
-.interface {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex: 1;
-    flex-direction: column;
+.popup_submit {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -150%);
 }
 
-.custom_class {
-    margin: 10px 15px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-content: center;
-    flex-direction: row;
+.popup_action {
+    margin: 15px 5px;
+    border: 1px solid lightgray;
+    background-color: coral;
+    color: white;
+    border-radius: 3px;
+    font-size: 18px;
+    width: 120px;
+    height: 40px;
 }
 
-.add {
-    height: auto;
-    width: 20px;
-}
-
-.stats {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.stat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.health {
-    margin: 0 15px;
-    width: 20px;
-    height: 20px;
-    background: url("./../assets/health.png") no-repeat;
-    background-size: contain;
-}
-
-
-.attack {
-    margin: 0 15px;
-    width: 20px;
-    height: 20px;
-    background: url("./../assets/attack.png") no-repeat;
-    background-size: contain;
-}
-
-
-.mana {
-    margin: 0 15px;
-    width: 20px;
-    height: 20px;
-    background: url("./../assets/mana.png") no-repeat;
-    background-size: contain;
+.popup_note {
+    font-size: 10px;
+    font-family: Roboto, SansSerif;
 }

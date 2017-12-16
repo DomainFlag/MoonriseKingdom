@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Moonrise Kingdom</title>
-    <link href="../public/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../public/css/home.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
     <link rel="shortcut icon" href="../public/assets/favicon.png" type="image/x-icon">
     <link rel="icon" href="../public/assets/favicon.png" type="image/x-icon">

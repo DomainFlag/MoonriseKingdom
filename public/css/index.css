@@ -1,0 +1,372 @@
+* {
+    margin : 0;
+    padding : 0;
+}
+
+html, body {
+    height : 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.teams {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.team_header {
+    color: forestgreen;
+    margin: 10px 0;
+    font-size: 36px;
+    font-family: "Roboto Slab", Serif;
+    font-weight: 300;
+}
+
+.input {
+    margin: 5px 0;
+    padding-left: 5px;
+    display: inline-flex;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 45px;
+    width: 260px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+    outline: 0;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.input:-webkit-autofill {
+    color: #2a2a2a !important;
+}
+
+.colorpicker {
+    margin: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+}
+
+.compositions {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.choosing {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#selected_team {
+    font-size: 12px;
+    font-family: "Roboto", SansSerif;
+    color: darkslategrey;
+}
+
+#crystal {
+    margin-right: 10px;
+    width: 20px;
+    height: 12px;
+    transform: skew(-35deg);
+}
+
+.selection {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.composition {
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.class {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+img {
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    font-size: 14px;
+    font-family: "Roboto Slab";
+}
+
+.dimensions {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.submit {
+    margin: 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: crimson;
+    padding: 10px 16px;
+    font-size: 16px;
+    color: white;
+    font-family: "Roboto Slab", SaSerif;
+}
+
+#dimension {
+    margin: 5px;
+    height: 30px;
+    width: 40px;
+    border: none;
+    border-radius: 4px;
+    color: whitesmoke;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: darkslategrey url("./../assets/arrow.png") right 6px center no-repeat;
+    background-size: 8px 6px;
+    padding: 0 6px;
+}
+
+.assign {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.team_creator {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 300;
+    font-size: 13px;
+    font-family: "Roboto Slab", Serif;
+    height: 40px;
+    width: 120px;
+    border-radius: 4px;
+    background-color: chocolate;
+}
+
+.team_creator:hover {
+    background-color: saddlebrown;
+}
+
+.team_creator:active {
+    background-color: saddlebrown;
+}
+
+/* Team Creator Interface */
+.custom_composition {
+    z-index: 2;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: whitesmoke;
+    width: 350px;
+    height: 300px;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+.close {
+    padding: 3px 6px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-150%, 50%);
+    background-color: crimson;
+    color: white;
+    font-weight: 500;
+    font-family: "Roboto Slab", Serif;
+}
+
+.close:hover {
+    background-color: chocolate;
+    font-weight: 900;
+}
+
+.count {
+    padding: 20px;
+    color: darkslategrey;
+    font-weight: 300;
+    font-size: 15px;
+    font-family: "Roboto Slab", Serif;
+}
+
+.interface {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
+    flex-direction: column;
+}
+
+.custom_class {
+    margin: 10px 15px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: row;
+}
+
+.add {
+    height: auto;
+    width: 20px;
+}
+
+.stats {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.health {
+    margin: 0 15px;
+    width: 20px;
+    height: 20px;
+    background: url("./../assets/health.png") no-repeat;
+    background-size: contain;
+}
+
+
+.attack {
+    margin: 0 15px;
+    width: 20px;
+    height: 20px;
+    background: url("./../assets/attack.png") no-repeat;
+    background-size: contain;
+}
+
+
+.mana {
+    margin: 0 15px;
+    width: 20px;
+    height: 20px;
+    background: url("./../assets/mana.png") no-repeat;
+    background-size: contain;
+}
+
+/* Statistics Container */
+.statistics {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.statistics-row {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.statistics-row:first-of-type {
+    margin: 0;
+}
+
+.statistics-column {
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.statistics-header {
+    font-family: Roboto, SansSerif;
+    font-size: 11px;
+}
+
+.statistics-paragraph {
+    margin-bottom: 8px;
+    font-family: Roboto, SansSerif;
+    font-size: 9px;
+    font-style: oblique;
+}
+
+.sprites {
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.stat-hover {
+    position: absolute;
+    transform: translate(0, 240%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

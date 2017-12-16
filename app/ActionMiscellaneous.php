@@ -24,11 +24,11 @@ if(isset($data)) {
     mysqli_query($connection, $req_insert_action);
     $action_id = mysqli_insert_id($connection);
 
-    $req_affected_morpion = "SELECT idM FROM coordinates WHERE idG = ".$game_id." AND cordX = ".$data->cell->x." AND cordY = ".$data->cell->y.";";
+    $req_affected_morpion = "SELECT idM FROM coordinates WHERE idG = ".$game_id." AND idM = ".$data->cell->id.";";
     $result_affected_morpion = mysqli_query($connection, $req_affected_morpion);
     $affected_morpion = mysqli_fetch_assoc($result_affected_morpion)["idM"];
 
-    $req_insert_miscellaneous = "INSERT INTO miscellaneous(idA, type, idM, idM_Morpion) VALUES(".$action_id.", '".$data->type."', 
+    $req_insert_miscellaneous = "INSERT INTO miscellaneous(idA, type, idM, idM_morpion) VALUES(".$action_id.", '".$data->type."', 
             ".$data->morpion->type->id.", ".$affected_morpion.");";
     mysqli_query($connection, $req_insert_miscellaneous);
     switch($data->type) {
